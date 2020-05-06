@@ -1,6 +1,10 @@
 import { graphql } from 'gatsby';
 import * as React from 'react';
 import * as styles from './Index.module.scss';
+import { Layout, Menu } from 'antd';
+import { HomeOutlined } from '@ant-design/icons/lib';
+
+const { Content, Footer, Sider } = Layout;
 
 interface IndexPageProps {
   data: {
@@ -25,18 +29,34 @@ export const indexPageQuery = graphql`
 `;
 
 export default class IndexPage extends React.Component<IndexPageProps, {}> {
+  state = {
+    collapsed: true,
+  };
 
-  public render() {
-    const {
-      name,
-      tagline,
-    } = this.props.data.site.siteMetadata;
+  onCollapse = (collapsed: boolean) => {
+    this.setState({ collapsed });
+  };
 
+  render() {
     return (
-      <div className={styles.Container}>
-        <h1>{name}</h1>
-        <p>{tagline}</p>
-      </div>
+      <Layout style={{ minHeight: '100vh' }}>
+        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+          <div className="logo" />
+          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+            <Menu.Item key="1" icon={<HomeOutlined />}>
+              Home
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout className="site-layout">
+          <Content style={{ margin: '0 16px' }}>
+            <div>
+              <h1>Test</h1>
+            </div>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>Caelin SUtch ©{ Date.now() }</Footer>
+        </Layout>
+      </Layout>
     );
   }
 }
