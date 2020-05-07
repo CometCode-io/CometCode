@@ -1,59 +1,41 @@
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import * as React from 'react';
-import * as styles from './index.module.scss';
-import { Layout, Menu } from 'antd';
-import {
-  HomeOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-} from '@ant-design/icons/lib';
-import { PostNode } from '../templates/post';
+import { Layout } from 'antd';
 import { Col, Row } from 'antd/lib/grid';
-import Tag from 'antd/lib/tag';
+import { GatsbyGenericNode, IndexPageProps, TagData } from '../interfaces';
+import BigTag from '../components/big-tag';
+import NavComponent from '../components/nav';
+import PostCard from '../components/post-card';
 import styled from '@emotion/styled';
-import { CSSProperties } from 'react';
 
-const { Header, Content, Footer, Sider } = Layout;
-
-export interface IndexProps {
-  data: {
-    posts: {
-      edges: PostNode[];
-    };
-    tagsGroup: {
-      group: Array<{
-        tag: string;
-      }>;
-    };
-    tagInformation: {
-      edges: TagNode[];
-    };
-  };
-}
-
-interface TagNode {
-  node: {
-    id: string;
-    color: string;
-  };
-}
+const { Content } = Layout;
 
 export const query = graphql`
   query {
-    posts: allMarkdownRemark {
+    posts: allMdx(filter: { frontmatter: { layout: { eq: "post" } } }) {
       edges {
         node {
+          fields {
+            slug
+          }
           frontmatter {
             title
             layout
-            image
+            tags
+            image {
+              childImageSharp {
+                fluid(maxWidth: 3720) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
             date
             excerpt
           }
         }
       }
     }
-    tagsGroup: allMarkdownRemark(limit: 2000) {
+    tagsGroup: allMdx(limit: 2000) {
       group(field: frontmatter___tags) {
         tag: fieldValue
         totalCount
@@ -71,140 +53,73 @@ export const query = graphql`
 `;
 
 export default class IndexPage extends React.Component<
-  IndexProps,
+  IndexPageProps,
   Record<string, unknown>
 > {
-  state = {
-    collapsed: true,
-    collapsedWidth: 80,
-  };
-
-  componentDidMount() {
-    window.addEventListener('resize', this.resize.bind(this));
-    this.resize();
-  }
-
-  resize() {
-    this.setState({
-      collapsedWidth: window.innerWidth <= 700 ? 0 : 80,
-    });
-  }
-
-  toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
-  };
-
-  clickToggle = () => {
-    if (window.innerWidth <= 700) {
-      this.setState({
-        collapsed: !this.state.collapsed,
-      });
-    }
-  };
-
-  siderStyle(): CSSProperties {
-    let styles: CSSProperties = {};
-    if (window.innerWidth <= 700) {
-      styles = {
-        position: 'absolute',
-        height: '100vh',
-        zIndex: 1000,
-      };
-    }
-
-    return styles;
-  }
-
-  changeMenuType = (v: any) => {
-    console.log(v);
-  };
-
   render() {
+    const allTags: TagData[] = this.props.data.tagsGroup.group.map(
+      (tagInfo) => {
+        const tagData:
+          | GatsbyGenericNode<TagData>
+          | undefined = this.props.data.tagInformation.edges.find(
+          (tagD) => tagD?.node.id === tagInfo.tag
+        );
+        if (tagData) {
+          return tagData.node;
+        } else {
+          return { id: tagInfo.tag, color: '#666666' } as TagData;
+        }
+      }
+    );
     return (
-      <Layout style={{ minHeight: '100vh' }}>
-        <Sider
-          collapsible
-          trigger={null}
-          collapsed={this.state.collapsed}
-          collapsedWidth={this.state.collapsedWidth}
-          style={this.siderStyle()}
-          onClick={this.clickToggle}
-          onBreakpoint={this.changeMenuType}
-        >
-          <div className="logo" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item
-              key="1"
-              icon={
-                <HomeOutlined
-                  style={{ fontSize: '30px', fontWeight: 'bolder' }}
-                />
-              }
-            >
-              <NavText>Home</NavText>
-            </Menu.Item>
-            <Menu.Item
-              key="2"
-              icon={
-                <HomeOutlined
-                  style={{ fontSize: '30px', fontWeight: 'bolder' }}
-                />
-              }
-            >
-              <NavText>Home 2</NavText>
-            </Menu.Item>
-          </Menu>
-        </Sider>
-        <Layout className="site-layout">
-          <Header className={styles.header} style={{ float: 'right' }}>
-            {React.createElement(
-              this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-              {
-                className: styles.menuButton,
-                onClick: this.toggle,
-              }
-            )}
-          </Header>
-
-          <Content style={{ margin: '0 16px' }}>
-            <div className="container">
-              <Row>
-                <Col className="text-center" span={24}>
-                  <LogoImage src="/logo-full.svg" alt="" />
+      <NavComponent activeLink="/">
+        <Content style={{ margin: '0 16px' }}>
+          <div className="container">
+            <Row>
+              <Col className="text-center" span={24}>
+                <LogoImage src="/logo-full.svg" alt="" />
+              </Col>
+              <Col span={24}>
+                <TagTitle>What Would you like to read about today?</TagTitle>
+                <TagContainer>
+                  {allTags.map((tag) => (
+                    <BigTag tag={tag} key={tag.id} size="large">
+                      #{tag.id}
+                    </BigTag>
+                  ))}
+                </TagContainer>
+              </Col>
+            </Row>
+            <Row>
+              <h1>Recent</h1>
+            </Row>
+            <Row>
+              {this.props.data.posts.edges.map((post) => (
+                <Col
+                  span={12}
+                  xl={12}
+                  lg={12}
+                  md={12}
+                  sm={24}
+                  xs={24}
+                  key={post.node.frontmatter.title}
+                >
+                  <PostCard
+                    post={post.node.frontmatter}
+                    postUrl={post.node.fields.slug}
+                    tagData={this.props.data.tagInformation.edges.map(
+                      (tagNode) => tagNode.node
+                    )}
+                  />
                 </Col>
-                <Col span={24}>
-                  <TagTitle>What Would you like to read about today?</TagTitle>
-                  <TagContainer>
-                    {this.props.data.tagInformation.edges.map((tag) => (
-                      <Tag
-                        key={tag.node.id}
-                        color={tag.node.color}
-                        className={styles.bigTag}
-                      >
-                        #{tag.node.id}
-                      </Tag>
-                    ))}
-                  </TagContainer>
-                </Col>
-              </Row>
-            </div>
-          </Content>
-          <Footer style={{ textAlign: 'center' }}>
-            Caelin Sutch ©{Date.now()}
-          </Footer>
-        </Layout>
-      </Layout>
+              ))}
+            </Row>
+          </div>
+        </Content>
+      </NavComponent>
     );
   }
 }
-
-const NavText = styled.span`
-  font-weight: bold;
-  font-size: 24px;
-  margin-left: 0.5rem;
-`;
 
 const LogoImage = styled.img`
   width: 100%;
@@ -218,4 +133,5 @@ const TagTitle = styled.h2`
 
 const TagContainer = styled.div`
   text-center: auto;
+  margin-bottom: 1.5rem;
 `;

@@ -6,6 +6,9 @@ module.exports = {
     name: 'Comet  Code',
     tagline: 'Ez Pz Software💪',
   },
+  mapping: {
+    'Mdx.frontmatter.author': 'ContributorYaml',
+  },
   plugins: [
     'gatsby-plugin-sass',
     'gatsby-plugin-less',
@@ -14,6 +17,7 @@ module.exports = {
     'gatsby-plugin-antd',
     'gatsby-transformer-yaml',
     'gatsby-plugin-emotion',
+    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -22,8 +26,16 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: 'gatsby-plugin-sharp',
       options: {
+        quality: 100,
+        stripMetadata: true,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        extensions: ['.mdx', '.md'],
         plugins: [
           'gatsby-remark-prismjs',
           'gatsby-remark-copy-linked-files',
