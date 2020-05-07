@@ -24,7 +24,7 @@ interface PageTemplateProps {
   };
 }
 
-const PageTemplate: React.FC<PageTemplateProps> = props => {
+const PageTemplate: React.FC<PageTemplateProps> = (props) => {
   const post = props.data.markdownRemark;
   return (
     <main>
