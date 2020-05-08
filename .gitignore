@@ -1,6 +1,9 @@
 .idea/
 .idea
 .idea/*
+
+.firebase/
+.firebase
 # Logs
 logs
 *.log

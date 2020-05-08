@@ -19,13 +19,33 @@ interface NavProps {
 }
 
 class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
+  resizeListener: any;
+
   state = {
     collapsed: true,
-    collapsedWidth: 80,
+    collapsedWidth: 0,
     leftPadding: 0,
   };
 
-  resizeListener: any;
+  constructor(props: any) {
+    super(props);
+
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth < 700) {
+        this.state = {
+          collapsed: true,
+          collapsedWidth: 0,
+          leftPadding: 0,
+        };
+      } else {
+        this.state = {
+          collapsed: true,
+          collapsedWidth: 80,
+          leftPadding: 80,
+        };
+      }
+    }
+  }
 
   componentDidMount() {
     if (typeof window !== 'undefined') {
@@ -81,10 +101,6 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
       styles = { display: 'none' };
     }
     return styles;
-  }
-
-  children(): CSSProperties {
-    return { paddingLeft: this.state.collapsedWidth };
   }
 
   render() {
@@ -163,7 +179,7 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
               <SiteTitle>Comet Code</SiteTitle>
             </HeaderLogoContainer>
           </Header>
-          <div style={this.children()}>
+          <div style={{ paddingLeft: this.state.leftPadding }}>
             {this.props.children}
             <Footer style={{ textAlign: 'center' }}>
               Caelin Sutch ©{new Date().getFullYear()}
