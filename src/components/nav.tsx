@@ -4,6 +4,7 @@ import {
   HomeOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  SearchOutlined,
   TagOutlined,
   ToolOutlined,
 } from '@ant-design/icons/lib';
@@ -124,6 +125,19 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
               icon={
                 <AniLink cover to="/" direction="right" bg="#141f35">
                   <HomeOutlined
+                    style={{ fontSize: '30px', fontWeight: 'bolder' }}
+                  />
+                </AniLink>
+              }
+              title="Home"
+            >
+              <NavText style={this.labelStyle()}>Home</NavText>
+            </Menu.Item>
+            <Menu.Item
+              key="/search"
+              icon={
+                <AniLink cover to="/search" direction="right" bg="#141f35">
+                  <SearchOutlined
                     style={{ fontSize: '30px', fontWeight: 'bolder' }}
                   />
                 </AniLink>
