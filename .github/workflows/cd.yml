@@ -12,12 +12,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: Install Dependencies
       run: npm install
-    
+
     - name: Build
       run: npm run build
+      env:
+        GATSBY_ALGOLIA_APP_ID: ${{secrets.GATSBY_ALGOLIA_APP_ID}}
+        GATSBY_ALGOLIA_SEARCH_KEY: ${{secrets.GATSBY_ALGOLIA_SEARCH_KEY}}
+        ALGOLIA_ADMIN_KEY: ${{secrets.ALGOLIA_ADMIN_KEY}}
+        ALGOLIA_INDEX_NAME: ${{secrets.ALGOLIA_INDEX_NAME}}
 
     - name: Deploy to Firebase
       uses: w9jds/firebase-action@master
