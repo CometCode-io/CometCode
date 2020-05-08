@@ -21,7 +21,7 @@ interface NavProps {
 class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
   state = {
     collapsed: true,
-    collapsedWidth: 80,
+    collapsedWidth: 0,
   };
 
   resizeListener: any;
@@ -193,7 +193,8 @@ const HeaderLogo = styled.img`
 `;
 
 const SiteTitle = styled.h1`
-  margin-top: 0.3rem;
+  font-size: 24px;
+  margin-top: 0.5rem;
   margin-left: 1rem;
   color: white;
 `;

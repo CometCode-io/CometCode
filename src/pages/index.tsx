@@ -123,7 +123,7 @@ export default class IndexPage extends React.Component<
             <div className="container">
               <Row>
                 <Col className="text-center" span={24}>
-                  <LogoImage src="/logo-full.svg" alt="" />
+                  <LogoImage src="/logo.svg" alt="" />
                 </Col>
                 <Col span={24}>
                   <TagTitle>What do you want to learn about today?</TagTitle>
@@ -162,6 +162,7 @@ export default class IndexPage extends React.Component<
 
 const LogoImage = styled.img`
   width: 100%;
+  max-width: 300px;
   margin: 2rem 0;
 `;
 const TagTitle = styled.h2`
