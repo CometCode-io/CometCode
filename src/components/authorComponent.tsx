@@ -25,7 +25,6 @@ const AuthorImage = css`
 `;
 
 const AuthorComponent: React.FC<AuthorProps> = (props) => {
-  console.log(props);
   return (
     <AuthorWrapper>
       <Img fluid={props.author.profileImage.childImageSharp.fluid} css={AuthorImage}/>

@@ -3,7 +3,9 @@ import { Layout, Menu } from 'antd';
 import {
   HomeOutlined,
   MenuFoldOutlined,
-  MenuUnfoldOutlined, TagOutlined,
+  MenuUnfoldOutlined,
+  TagOutlined,
+  ToolOutlined
 } from '@ant-design/icons/lib';
 import styled from '@emotion/styled';
 import * as styles from '../pages/index.module.scss';
@@ -104,7 +106,7 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
                   />
                 </Link>
               }
-              title="Home Page"
+              title="Home"
             >
               <NavText style={this.labelStyle()}>Home</NavText>
             </Menu.Item>
@@ -117,9 +119,22 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
                   />
                 </Link>
               }
-              title="Welcome"
+              title="Tags"
             >
-              <NavText style={this.labelStyle()}>Home 2</NavText>
+              <NavText style={this.labelStyle()}>Tags</NavText>
+            </Menu.Item>
+            <Menu.Item
+              key="/snippets"
+              icon={
+                <Link to="/snippets">
+                  <ToolOutlined
+                    style={{ fontSize: '30px', fontWeight: 'bolder' }}
+                  />
+                </Link>
+              }
+              title="Tags"
+            >
+              <NavText style={this.labelStyle()}>Snippets</NavText>
             </Menu.Item>
           </Menu>
         </Sider>

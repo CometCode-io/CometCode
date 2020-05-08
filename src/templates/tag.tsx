@@ -34,6 +34,13 @@ export const query = graphql`
             }
             author {
               name
+              profileImage {
+                childImageSharp {
+                  fluid(maxWidth: 300) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
             }
           }
           fields {
@@ -66,7 +73,7 @@ interface TagPageProps {
   };
 }
 
-const TagPageTemplate: React.FC<TagPageProps> = ({ data, pageContext }) => {
+const TagPageTemplate: React.FC<TagPageProps> = ({ data }) => {
   const tag = data.tagInformation.edges[0].node;
   const posts = data.filteredPosts?.edges.filter(
     (item) => item.node.frontmatter.layout === 'post'
@@ -74,9 +81,6 @@ const TagPageTemplate: React.FC<TagPageProps> = ({ data, pageContext }) => {
   const snippets = data.filteredPosts?.edges.filter(
     (item) => item.node.frontmatter.layout === 'snippet'
   );
-  console.log(snippets);
-  console.log(pageContext);
-  console.log(data);
   return (
     <NavComponent activeLink={'/tags'}>
       <Content>

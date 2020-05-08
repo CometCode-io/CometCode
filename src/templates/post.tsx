@@ -7,6 +7,7 @@ import Img from 'gatsby-image';
 import styled from '@emotion/styled';
 import { PostFrontMatter } from '../interfaces';
 import AuthorComponent from '../components/authorComponent';
+import TagsContainer from '../components/tags-container';
 
 const { Content } = Layout;
 
@@ -26,13 +27,12 @@ const PostTitle = styled.h1`
 const DatePublished = styled.h4`
   color: grey;
   font-weight: normal;
-`
+`;
 
 const PostAuthor = styled.h2``;
 
 const PostPageTemplate: React.FC<PostPageProps> = (props) => {
   const post = props.data.mdx;
-  console.log(props.data.mdx.frontmatter.author);
   return (
     <NavComponent activeLink="/tutorials">
       <Content>
@@ -44,6 +44,10 @@ const PostPageTemplate: React.FC<PostPageProps> = (props) => {
         ) : null}
         <div className="container">
           <PostTitle>{props.data.mdx.frontmatter.title}</PostTitle>
+          <TagsContainer
+            tags={props.data.mdx.frontmatter.tags}
+            size={'small'}
+          />
           <AuthorComponent author={props.data.mdx.frontmatter.author[0]} />
           <DatePublished>{post.frontmatter.date}</DatePublished>
           <MDXRenderer>{post.body}</MDXRenderer>

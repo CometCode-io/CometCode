@@ -3,10 +3,9 @@ import { PostFrontMatter, TagData } from '../interfaces';
 import { Card } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import Img from 'gatsby-image';
-import { Link } from 'gatsby';
-import BigTag from './big-tag';
-import styled from '@emotion/styled';
-import { Button } from 'antd';
+import { navigate } from 'gatsby';
+import TagsContainer from './tags-container';
+import AuthorComponent from './authorComponent';
 
 interface PostCardTemplateProps {
   post: PostFrontMatter;
@@ -14,38 +13,24 @@ interface PostCardTemplateProps {
   tagData: TagData[];
 }
 
-const TagContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-bottom: 0.5rem;
-`;
-
 const PostCard: React.FC<PostCardTemplateProps> = (props) => {
-  const postTags = props.tagData
+  const postTags = props.tagData;
+  const goToLink = () => navigate(props.postUrl);
   return (
     <Card
       hoverable
+      title={props.post.title}
       cover={
         <Img
           alt="Post Image"
           fluid={props.post.image.childImageSharp.fluid}
         />
       }
+      onClick={goToLink}
     >
-      <TagContainer>
-        {postTags
-          ? postTags.map((tag) => (
-              <BigTag tag={tag} size="small" key={tag.id}>
-                #{tag.id}
-              </BigTag>
-            ))
-          : null}
-      </TagContainer>
-      <Meta title={props.post.title} description={props.post.excerpt} />
-      <Button type="primary" shape="round" size="large" className="mt2">
-        <Link to={props.postUrl}>See Article</Link>
-      </Button>
+      <TagsContainer tags={postTags} size={'small'} />
+      <p className="mb2">{props.post.excerpt}</p>
+      <AuthorComponent author={props.post.author[0]} />
     </Card>
   );
 };

@@ -46,6 +46,7 @@ export interface SnippetFrontMatter {
   title: string;
   layout: string;
   date: string;
+  author: Author[];
   excerpt: string;
   tags: TagData[];
 }

@@ -1,12 +1,12 @@
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import * as React from 'react';
 import { Layout } from 'antd';
 import { Col, Row } from 'antd/lib/grid';
-import { GatsbyGenericNode, IndexPageProps, TagData } from '../interfaces';
-import BigTag from '../components/big-tag';
+import { IndexPageProps, TagData } from '../interfaces';
 import NavComponent from '../components/nav';
 import PostCard from '../components/post-card';
 import styled from '@emotion/styled';
+import TagsContainer from '../components/tags-container';
 
 const { Content } = Layout;
 
@@ -32,6 +32,16 @@ export const query = graphql`
                 }
               }
             }
+            author {
+              name
+              profileImage {
+                childImageSharp {
+                  fluid(maxWidth: 300) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
             date
             excerpt
           }
@@ -54,7 +64,9 @@ export default class IndexPage extends React.Component<
   Record<string, unknown>
 > {
   render() {
-    const allTags: TagData[] = this.props.data.tagInformation.edges.map(tag => tag.node);
+    const allTags: TagData[] = this.props.data.tagInformation.edges.map(
+      (tag) => tag.node
+    );
     return (
       <NavComponent activeLink="/">
         <Content style={{ margin: '0 16px' }}>
@@ -65,13 +77,7 @@ export default class IndexPage extends React.Component<
               </Col>
               <Col span={24}>
                 <TagTitle>What Would you like to read about today?</TagTitle>
-                <TagContainer>
-                  {allTags.map((tag) => (
-                    <BigTag tag={tag} key={tag.id} size="large">
-                      #{tag.id}
-                    </BigTag>
-                  ))}
-                </TagContainer>
+                <TagsContainer tags={allTags} size={'large'} />
               </Col>
             </Row>
             <Row>
@@ -111,9 +117,4 @@ const TagTitle = styled.h2`
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
-`;
-
-const TagContainer = styled.div`
-  text-center: auto;
-  margin-bottom: 1.5rem;
 `;

@@ -19,9 +19,8 @@ interface SnippetsPageProps {
 }
 
 const SnippetsPage: React.FC<SnippetsPageProps> = (props) => {
-  console.log(props.data);
   return (
-    <NavComponent activeLink={'/tags'}>
+    <NavComponent activeLink={'/snippets'}>
       <Content>
         <div className="container">
           <Row>
@@ -41,9 +40,6 @@ const SnippetsPage: React.FC<SnippetsPageProps> = (props) => {
                 <SnippetCard
                   snippet={snippet.node.frontmatter}
                   snippetUrl={snippet.node.fields.slug}
-                  tagData={props.data.tagInformation.edges.map(
-                    (tagNode) => tagNode.node
-                  )}
                 />
               </Col>
             ))}
@@ -69,17 +65,19 @@ export const query = graphql`
               id
               color
             }
+            author {
+              name
+              profileImage {
+                childImageSharp {
+                  fluid(maxWidth: 300) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
             date
             excerpt
           }
-        }
-      }
-    }
-    tagInformation: allTagsYaml {
-      edges {
-        node {
-          id
-          color
         }
       }
     }

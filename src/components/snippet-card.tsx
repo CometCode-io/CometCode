@@ -1,42 +1,27 @@
 import React from 'react';
-import { SnippetFrontMatter, TagData } from '../interfaces';
-import { Button, Card } from 'antd';
-import BigTag from './big-tag';
-import styled from '@emotion/styled';
-import { Link } from 'gatsby';
+import { SnippetFrontMatter } from '../interfaces';
+import { Card } from 'antd';
+import TagsContainer from './tags-container';
+import { navigate} from 'gatsby';
+import Meta from 'antd/lib/card/Meta';
+import AuthorComponent from './authorComponent';
 
 interface SnippetCardTemplateProps {
   snippet: SnippetFrontMatter;
   snippetUrl: string;
 }
 
-const TagContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-bottom: 0.5rem;
-`;
-
 const SnippetCard: React.FC<SnippetCardTemplateProps> = (props) => {
   const snippetTags = props.snippet.tags;
   const snippetData = props.snippet;
 
+  const goToLink = () => navigate(props.snippetUrl);
+
   return (
-    <Card title={snippetData.title} hoverable>
-      <TagContainer>
-        {snippetTags
-          ? snippetTags.map((tag) => (
-              <BigTag tag={tag} size="small" key={tag.id}>
-                #{tag.id}
-              </BigTag>
-            ))
-          : null}
-      </TagContainer>
-      {snippetData.excerpt}
-      <br />
-      <Button type="primary" shape="round" size="large" className="mt2">
-        <Link to={props.snippetUrl}>See Article</Link>
-      </Button>
+    <Card title={snippetData.title} hoverable onClick={goToLink}>
+      <TagsContainer tags={snippetTags} size={'small'} />
+      <p className="mb2">{snippetData.excerpt}</p>
+      <AuthorComponent author={props.snippet.author[0]} />
     </Card>
   );
 };
