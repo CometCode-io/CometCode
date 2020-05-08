@@ -1,15 +1,14 @@
-import { FluidObject } from 'gatsby-image';
+import { FixedObject, FluidObject } from 'gatsby-image';
 
 export interface IndexPageProps {
   data: {
+    siteBanner: Image;
     posts: {
       edges: GatsbyGenericNode<PostNode>[];
     };
     tagsGroup: {
       group: Array<{
-        tag: {
-
-        };
+        tag: any;
       }>;
     };
     tagInformation: {
@@ -72,15 +71,7 @@ export interface GatsbyGenericNode<T> {
 
 interface Image {
   childImageSharp: {
+    fixed: FixedObject;
     fluid: FluidObject;
   };
 }
-
-// interface FrontMatter<T> {
-//   fields: {
-//     slug: string;
-//   };
-//   node: {
-//     frontmatter: T;
-//   };
-// }

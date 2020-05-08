@@ -5,7 +5,7 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   TagOutlined,
-  ToolOutlined
+  ToolOutlined,
 } from '@ant-design/icons/lib';
 import styled from '@emotion/styled';
 import * as styles from '../pages/index.module.scss';
@@ -147,7 +147,10 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
                 onClick: this.toggle,
               }
             )}
-            <SiteTitle>Comet Code</SiteTitle>
+            <HeaderLogoContainer>
+              <HeaderLogo src="/logo.svg" />
+              <SiteTitle>Comet Code</SiteTitle>
+            </HeaderLogoContainer>
           </Header>
           {this.props.children}
           <Footer style={{ textAlign: 'center' }}>
@@ -158,6 +161,16 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
     );
   }
 }
+
+const HeaderLogoContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const HeaderLogo = styled.img`
+  width: 60px;
+  margin: 0.5rem 0 0.5rem 2rem;
+`;
 
 const SiteTitle = styled.h1`
   margin-top: 0.3rem;
