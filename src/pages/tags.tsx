@@ -3,13 +3,22 @@ import NavComponent from '../components/nav';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import { Layout } from 'antd';
-import { GatsbyGenericNode, TagData } from '../interfaces';
+import { GatsbyGenericNode, Image, TagData } from '../interfaces';
 import BigTag from '../components/big-tag';
+import { Helmet } from 'react-helmet';
+import config from '../website-config';
 
 const { Content } = Layout;
 
 export const query = graphql`
   query {
+    pageBanner: file(relativePath: { eq: "img/sort-by-tag-banner.png" }) {
+      childImageSharp {
+        fixed {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
     allTags: allMdx {
       group(field: frontmatter___tags___id) {
         tag: fieldValue
@@ -35,6 +44,7 @@ interface TagsPageProps {
     tagInformation: {
       edges: GatsbyGenericNode<TagData>[];
     };
+    pageBanner: Image;
   };
 }
 
@@ -65,21 +75,58 @@ const TagsPage: React.FC<TagsPageProps> = (props) => {
       } as TagData;
     }
   });
+  const pageDescription =
+    'See all the different tags/topics that are discussed on this site';
+  const pageUrl = `${config.siteUrl}/tags`;
+  const pageTitle = 'Tags - ' + config.title;
   return (
-    <NavComponent activeLink={'/tags'}>
-      <Content>
-        <div className="container text-center">
-          <PageTitle>All Tags</PageTitle>
-          <TagContainer>
-            {allTags.map((tag) => (
-              <BigTag tag={tag} key={tag.id} size="large">
-                #{tag.id} {tag.totalCount}
-              </BigTag>
-            ))}
-          </TagContainer>
-        </div>
-      </Content>
-    </NavComponent>
+    <div>
+      <Helmet>
+        <html lang={config.lang} />
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta property="og:site_name" content={config.title} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={pageUrl} />
+        <meta
+          property="og:image"
+          content={`${config.siteUrl}${props.data.pageBanner.childImageSharp.fixed.src}`}
+        />
+        {config.facebook && (
+          <meta property="article:publisher" content={config.facebook} />
+        )}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Snippets" />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:url" content={pageUrl} />
+        <meta
+          name="twitter:image"
+          content={`${config.siteUrl}${props.data.pageBanner.childImageSharp.fixed.src}`}
+        />
+        {config.twitter && (
+          <meta
+            name="twitter:site"
+            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
+          />
+        )}
+      </Helmet>
+      <NavComponent activeLink={'/tags'}>
+        <Content>
+          <div className="container text-center">
+            <PageTitle>All Tags</PageTitle>
+            <TagContainer>
+              {allTags.map((tag) => (
+                <BigTag tag={tag} key={tag.id} size="large">
+                  #{tag.id} {tag.totalCount}
+                </BigTag>
+              ))}
+            </TagContainer>
+          </div>
+        </Content>
+      </NavComponent>
+    </div>
   );
 };
 

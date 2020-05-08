@@ -69,7 +69,7 @@ export interface GatsbyGenericNode<T> {
   node: T;
 }
 
-interface Image {
+export interface Image {
   childImageSharp: {
     fixed: FixedObject;
     fluid: FluidObject;

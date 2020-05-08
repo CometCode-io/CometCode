@@ -1,9 +1,3 @@
 - id: 'About'
   color: '#1ABC9C'
   description: "Various Meta posts about this website"
-- id: 'Angular'
-  color: '#E74C3C'
-  description: ""
-- id: 'Welcome'
-  color: '#4287f5'
-  description: 'feafea feafe'
