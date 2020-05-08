@@ -24,24 +24,33 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
   };
 
   resizeListener: any;
-  clickListener: any;
 
   componentDidMount() {
-    this.resizeListener = window.addEventListener(
-      'resize',
-      this.resize.bind(this)
-    );
+    if (typeof window !== 'undefined') {
+      this.resizeListener = window.addEventListener(
+        'resize',
+        this.resize.bind(this)
+      );
+    }
     this.resize();
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.resizeListener);
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('resize', this.resizeListener);
+    }
   }
 
   resize() {
     this.setState({
-      collapsedWidth: window.innerWidth <= 700 ? 0 : 80,
+      collapsedWidth: window?.innerWidth <= 700 ? 0 : 80,
     });
+  }
+
+  isSmallMenu() {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth <= 700;
+    }
   }
 
   toggle = () => {
@@ -51,7 +60,7 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
   };
 
   clickToggle = () => {
-    if (window.innerWidth <= 700) {
+    if (this.isSmallMenu()) {
       this.setState({
         collapsed: !this.state.collapsed,
       });
@@ -76,7 +85,7 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
 
   children(): CSSProperties {
     let styles: CSSProperties = {};
-    if (window.innerWidth > 700) {
+    if (!this.isSmallMenu()) {
       styles = {
         paddingLeft: 80,
       };
@@ -157,10 +166,12 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
               <SiteTitle>Comet Code</SiteTitle>
             </HeaderLogoContainer>
           </Header>
-          <div style={this.children()}>{this.props.children}</div>
-          <Footer style={{ textAlign: 'center' }}>
-            Caelin Sutch ©{new Date().getFullYear()}
-          </Footer>
+          <div style={this.children()}>
+            {this.props.children}
+            <Footer style={{ textAlign: 'center' }}>
+              Caelin Sutch ©{new Date().getFullYear()}
+            </Footer>
+          </div>
         </Layout>
       </Layout>
     );

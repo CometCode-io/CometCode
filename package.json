@@ -8,6 +8,7 @@
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
+    "deploy": "npm run build && firebase deploy",
     "lint:fix": "eslint src/**/*.{ts,tsx,js,jsx} --fix"
   },
   "dependencies": {
