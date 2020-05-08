@@ -8,6 +8,7 @@ module.exports = {
   },
   mapping: {
     'Mdx.frontmatter.author': 'ContributorYaml',
+    'Mdx.frontmatter.tags': 'TagsYaml',
   },
   plugins: [
     'gatsby-plugin-sass',

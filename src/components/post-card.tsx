@@ -22,16 +22,7 @@ const TagContainer = styled.div`
 `;
 
 const PostCard: React.FC<PostCardTemplateProps> = (props) => {
-  const postTags = props.post.tags.map((tag) => {
-    const tagData: TagData = props.tagData.find(
-      (tagD) => tagD.id === tag
-    ) as TagData;
-    if (tagData) {
-      return tagData;
-    } else {
-      return { id: tag, color: '#666666' };
-    }
-  }) as TagData[];
+  const postTags = props.tagData
   return (
     <Card
       hoverable

@@ -60,7 +60,10 @@ export const query = graphql`
       frontmatter {
         title
         layout
-        tags
+        tags {
+          id
+          color
+        }
         image {
           childImageSharp {
             fluid(maxWidth: 3720) {

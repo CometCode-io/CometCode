@@ -8,7 +8,6 @@ import { Link } from 'gatsby';
 interface SnippetCardTemplateProps {
   snippet: SnippetFrontMatter;
   snippetUrl: string;
-  tagData: TagData[];
 }
 
 const TagContainer = styled.div`
@@ -19,17 +18,7 @@ const TagContainer = styled.div`
 `;
 
 const SnippetCard: React.FC<SnippetCardTemplateProps> = (props) => {
-  const snippetTags = props.snippet.tags.map((tag) => {
-    const tagData: TagData = props.tagData.find(
-      (tagD) => tagD.id === tag
-    ) as TagData;
-    if (tagData) {
-      return tagData;
-    } else {
-      return { id: tag, color: '#666666' };
-    }
-  }) as TagData[];
-
+  const snippetTags = props.snippet.tags;
   const snippetData = props.snippet;
 
   return (
@@ -44,7 +33,7 @@ const SnippetCard: React.FC<SnippetCardTemplateProps> = (props) => {
           : null}
       </TagContainer>
       {snippetData.excerpt}
-      <br/>
+      <br />
       <Button type="primary" shape="round" size="large" className="mt2">
         <Link to={props.snippetUrl}>See Article</Link>
       </Button>

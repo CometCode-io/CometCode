@@ -21,7 +21,10 @@ export const query = graphql`
           frontmatter {
             title
             layout
-            tags
+            tags {
+              id
+              color
+            }
             image {
               childImageSharp {
                 fluid(maxWidth: 3720) {
@@ -33,12 +36,6 @@ export const query = graphql`
             excerpt
           }
         }
-      }
-    }
-    tagsGroup: allMdx(limit: 2000) {
-      group(field: frontmatter___tags) {
-        tag: fieldValue
-        totalCount
       }
     }
     tagInformation: allTagsYaml {
@@ -57,20 +54,7 @@ export default class IndexPage extends React.Component<
   Record<string, unknown>
 > {
   render() {
-    const allTags: TagData[] = this.props.data.tagsGroup.group.map(
-      (tagInfo) => {
-        const tagData:
-          | GatsbyGenericNode<TagData>
-          | undefined = this.props.data.tagInformation.edges.find(
-          (tagD) => tagD?.node.id === tagInfo.tag
-        );
-        if (tagData) {
-          return tagData.node;
-        } else {
-          return { id: tagInfo.tag, color: '#666666' } as TagData;
-        }
-      }
-    );
+    const allTags: TagData[] = this.props.data.tagInformation.edges.map(tag => tag.node);
     return (
       <NavComponent activeLink="/">
         <Content style={{ margin: '0 16px' }}>
@@ -107,9 +91,7 @@ export default class IndexPage extends React.Component<
                   <PostCard
                     post={post.node.frontmatter}
                     postUrl={post.node.fields.slug}
-                    tagData={this.props.data.tagInformation.edges.map(
-                      (tagNode) => tagNode.node
-                    )}
+                    tagData={post.node.frontmatter.tags}
                   />
                 </Col>
               ))}

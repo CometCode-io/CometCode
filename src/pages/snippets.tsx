@@ -65,7 +65,10 @@ export const query = graphql`
           frontmatter {
             title
             layout
-            tags
+            tags {
+              id
+              color
+            }
             date
             excerpt
           }

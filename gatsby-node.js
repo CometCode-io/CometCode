@@ -33,7 +33,9 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             frontmatter {
-              tags
+              tags {
+                id
+              }
             }
             fields {
               slug
@@ -42,7 +44,7 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
       allTags: allMdx {
-        group(field: frontmatter___tags) {
+        group(field: frontmatter___tags___id) {
           tag: fieldValue
         }
       }

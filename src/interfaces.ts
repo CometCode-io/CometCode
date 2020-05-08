@@ -7,7 +7,9 @@ export interface IndexPageProps {
     };
     tagsGroup: {
       group: Array<{
-        tag: string;
+        tag: {
+
+        };
       }>;
     };
     tagInformation: {
@@ -28,7 +30,7 @@ export interface PostFrontMatter {
   layout: string;
   date: string;
   excerpt: string;
-  tags: string[];
+  tags: TagData[];
   author: Author[];
   image: Image;
 }
@@ -45,7 +47,7 @@ export interface SnippetFrontMatter {
   layout: string;
   date: string;
   excerpt: string;
-  tags: string[];
+  tags: TagData[];
 }
 
 export interface SnippetNode {

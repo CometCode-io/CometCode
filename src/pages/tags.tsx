@@ -11,7 +11,7 @@ const { Content } = Layout;
 export const query = graphql`
   query {
     allTags: allMdx {
-      group(field: frontmatter___tags) {
+      group(field: frontmatter___tags___id) {
         tag: fieldValue
         totalCount
       }
