@@ -21,7 +21,10 @@ export const query = graphql`
         }
       }
     }
-    posts: allMdx(filter: { frontmatter: { layout: { eq: "post" } } }) {
+    posts: allMdx(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { layout: { eq: "post" } } }
+    ) {
       edges {
         node {
           fields {
@@ -123,7 +126,7 @@ export default class IndexPage extends React.Component<
                   <LogoImage src="/logo-full.svg" alt="" />
                 </Col>
                 <Col span={24}>
-                  <TagTitle>What Would you like to read about today?</TagTitle>
+                  <TagTitle>What do you want to learn about today?</TagTitle>
                   <TagsContainer tags={allTags} size={'large'} />
                 </Col>
               </Row>

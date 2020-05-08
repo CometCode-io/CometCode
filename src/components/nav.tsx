@@ -59,22 +59,27 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
   };
 
   siderStyle(): CSSProperties {
-    let styles: CSSProperties = {};
-    if (window.innerWidth <= 700) {
-      styles = {
-        position: 'absolute',
-        height: '100vh',
-        zIndex: 1000,
-      };
-    }
-
-    return styles;
+    return {
+      position: 'fixed',
+      height: '100vh',
+      zIndex: 1000,
+    };
   }
 
   labelStyle(): CSSProperties {
     let styles: CSSProperties = {};
     if (this.state.collapsed) {
       styles = { display: 'none' };
+    }
+    return styles;
+  }
+
+  children(): CSSProperties {
+    let styles: CSSProperties = {};
+    if (window.innerWidth > 700) {
+      styles = {
+        paddingLeft: 80,
+      };
     }
     return styles;
   }
@@ -152,7 +157,7 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
               <SiteTitle>Comet Code</SiteTitle>
             </HeaderLogoContainer>
           </Header>
-          {this.props.children}
+          <div style={this.children()}>{this.props.children}</div>
           <Footer style={{ textAlign: 'center' }}>
             Caelin Sutch ©{new Date().getFullYear()}
           </Footer>
