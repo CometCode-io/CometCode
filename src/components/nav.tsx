@@ -10,6 +10,7 @@ import {
 import styled from '@emotion/styled';
 import * as styles from '../pages/index.module.scss';
 import { Link } from 'gatsby';
+import Helmet from 'react-helmet';
 
 const { Header, Footer, Sider } = Layout;
 
@@ -95,85 +96,90 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
 
   render() {
     return (
-      <Layout style={{ minHeight: '100vh' }}>
-        <Sider
-          collapsible
-          trigger={null}
-          collapsed={this.state.collapsed}
-          collapsedWidth={this.state.collapsedWidth}
-          style={this.siderStyle()}
-          onClick={this.clickToggle}
-        >
-          <div className="logo" />
-          <Menu
-            theme="dark"
-            mode="inline"
-            defaultSelectedKeys={['/']}
-            selectedKeys={[this.props.activeLink]}
+      <>
+        <Helmet>
+          <link rel="icon" href="/favicon.ico" />
+        </Helmet>
+        <Layout style={{ minHeight: '100vh' }}>
+          <Sider
+            collapsible
+            trigger={null}
+            collapsed={this.state.collapsed}
+            collapsedWidth={this.state.collapsedWidth}
+            style={this.siderStyle()}
+            onClick={this.clickToggle}
           >
-            <Menu.Item
-              key="/"
-              icon={
-                <Link to="/">
-                  <HomeOutlined
-                    style={{ fontSize: '30px', fontWeight: 'bolder' }}
-                  />
-                </Link>
-              }
-              title="Home"
+            <div className="logo" />
+            <Menu
+              theme="dark"
+              mode="inline"
+              defaultSelectedKeys={['/']}
+              selectedKeys={[this.props.activeLink]}
             >
-              <NavText style={this.labelStyle()}>Home</NavText>
-            </Menu.Item>
-            <Menu.Item
-              key="/tags"
-              icon={
-                <Link to="/tags">
-                  <TagOutlined
-                    style={{ fontSize: '30px', fontWeight: 'bolder' }}
-                  />
-                </Link>
-              }
-              title="Tags"
-            >
-              <NavText style={this.labelStyle()}>Tags</NavText>
-            </Menu.Item>
-            <Menu.Item
-              key="/snippets"
-              icon={
-                <Link to="/snippets">
-                  <ToolOutlined
-                    style={{ fontSize: '30px', fontWeight: 'bolder' }}
-                  />
-                </Link>
-              }
-              title="Tags"
-            >
-              <NavText style={this.labelStyle()}>Snippets</NavText>
-            </Menu.Item>
-          </Menu>
-        </Sider>
-        <Layout className="site-layout">
-          <Header className={styles.header} style={{ display: 'flex' }}>
-            {React.createElement(
-              this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-              {
-                className: styles.menuButton,
-                onClick: this.toggle,
-              }
-            )}
-            <HeaderLogoContainer>
-              <HeaderLogo src="/logo.svg" />
-              <SiteTitle>Comet Code</SiteTitle>
-            </HeaderLogoContainer>
-          </Header>
-          <div style={this.children()}>
-            {this.props.children}
-            <Footer style={{ textAlign: 'center' }}>
-              Caelin Sutch ©{new Date().getFullYear()}
-            </Footer>
-          </div>
+              <Menu.Item
+                key="/"
+                icon={
+                  <Link to="/">
+                    <HomeOutlined
+                      style={{ fontSize: '30px', fontWeight: 'bolder' }}
+                    />
+                  </Link>
+                }
+                title="Home"
+              >
+                <NavText style={this.labelStyle()}>Home</NavText>
+              </Menu.Item>
+              <Menu.Item
+                key="/tags"
+                icon={
+                  <Link to="/tags">
+                    <TagOutlined
+                      style={{ fontSize: '30px', fontWeight: 'bolder' }}
+                    />
+                  </Link>
+                }
+                title="Tags"
+              >
+                <NavText style={this.labelStyle()}>Tags</NavText>
+              </Menu.Item>
+              <Menu.Item
+                key="/snippets"
+                icon={
+                  <Link to="/snippets">
+                    <ToolOutlined
+                      style={{ fontSize: '30px', fontWeight: 'bolder' }}
+                    />
+                  </Link>
+                }
+                title="Tags"
+              >
+                <NavText style={this.labelStyle()}>Snippets</NavText>
+              </Menu.Item>
+            </Menu>
+          </Sider>
+          <Layout className="site-layout">
+            <Header className={styles.header} style={{ display: 'flex' }}>
+              {React.createElement(
+                this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+                {
+                  className: styles.menuButton,
+                  onClick: this.toggle,
+                }
+              )}
+              <HeaderLogoContainer>
+                <HeaderLogo src="/logo.svg" />
+                <SiteTitle>Comet Code</SiteTitle>
+              </HeaderLogoContainer>
+            </Header>
+            <div style={this.children()}>
+              {this.props.children}
+              <Footer style={{ textAlign: 'center' }}>
+                Caelin Sutch ©{new Date().getFullYear()}
+              </Footer>
+            </div>
+          </Layout>
         </Layout>
-      </Layout>
+      </>
     );
   }
 }
