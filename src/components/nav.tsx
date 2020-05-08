@@ -21,7 +21,8 @@ interface NavProps {
 class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
   state = {
     collapsed: true,
-    collapsedWidth: 0,
+    collapsedWidth: 80,
+    leftPadding: 0,
   };
 
   resizeListener: any;
@@ -44,11 +45,11 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
 
   resize() {
     this.setState({
-      collapsedWidth: window?.innerWidth <= 700 ? 0 : 80,
+      collapsedWidth: window.innerWidth <= 700 ? 0 : 80,
     });
   }
 
-  isSmallMenu() {
+  isMobile() {
     if (typeof window !== 'undefined') {
       return window.innerWidth <= 700;
     }
@@ -61,10 +62,8 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
   };
 
   clickToggle = () => {
-    if (this.isSmallMenu()) {
-      this.setState({
-        collapsed: !this.state.collapsed,
-      });
+    if (this.isMobile()) {
+      this.toggle();
     }
   };
 
@@ -85,13 +84,7 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
   }
 
   children(): CSSProperties {
-    let styles: CSSProperties = {};
-    if (!this.isSmallMenu()) {
-      styles = {
-        paddingLeft: 80,
-      };
-    }
-    return styles;
+    return { paddingLeft: this.state.collapsedWidth };
   }
 
   render() {
