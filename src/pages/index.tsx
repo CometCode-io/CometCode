@@ -167,7 +167,6 @@ export default class IndexPage extends React.Component<
                         post={post.node.frontmatter}
                         postUrl={post.node.fields.slug}
                         tagData={post.node.frontmatter.tags}
-                        layout={post.node.fields.layout}
                       />
                     </Col>
                   )

@@ -6,13 +6,11 @@ import { navigate } from 'gatsby';
 import TagsContainer from './tags-container';
 import AuthorComponent from './authorComponent';
 import { css } from '@emotion/core';
-import * as _ from 'lodash';
 
 interface PostCardTemplateProps {
   post: PostFrontMatter;
   postUrl: string;
   tagData: TagData[];
-  layout: string;
   size?: 'small' | 'large';
 }
 
@@ -29,13 +27,12 @@ const PostCard: React.FC<PostCardTemplateProps> = (props) => {
       }
     `;
   }
-  const layout = _.upperFirst(_.toLower(props.layout));
 
   return (
     <Card
       css={CardCss}
       hoverable
-      title={`${props.post.title} - ${layout}`}
+      title={props.post.title}
       cover={
         props.post.image ? (
           <Img

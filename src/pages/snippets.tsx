@@ -93,7 +93,6 @@ const SnippetsPage: React.FC<SnippetsPageProps> = (props) => {
                   <PostCard
                     post={snippet.node.frontmatter}
                     postUrl={snippet.node.fields.slug}
-                    layout={snippet.node.fields.layout}
                     tagData={snippet.node.frontmatter.tags}
                   />
                 </Col>

@@ -155,7 +155,6 @@ const TagPageTemplate: React.FC<TagPageProps> = ({ data, path }) => {
                   >
                     <PostCard
                       post={post.node.frontmatter}
-                      layout={post.node.fields.layout}
                       postUrl={post.node.fields.slug}
                       tagData={data.tagInformation.edges.map(
                         (tagNode) => tagNode.node
@@ -188,7 +187,6 @@ const TagPageTemplate: React.FC<TagPageProps> = ({ data, path }) => {
                       post={snippet.node.frontmatter}
                       postUrl={snippet.node.fields.slug}
                       tagData={snippet.node.frontmatter.tags}
-                      layout={snippet.node.fields.layout}
                       size="small"
                     />
                   </Col>

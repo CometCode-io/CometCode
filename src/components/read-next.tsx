@@ -27,7 +27,6 @@ const ReadNext: React.FC<ReadNextProps> = ({ relatedContent }) => {
           >
             <PostCard
               post={post.frontmatter}
-              layout={post.fields.layout}
               postUrl={post.fields.slug}
               tagData={post.frontmatter.tags}
               size="small"
