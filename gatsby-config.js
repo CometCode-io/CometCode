@@ -38,6 +38,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
+        gatsbyRemarkPlugins: [`gatsby-remark-autolink-headers`],
         extensions: ['.mdx', '.md'],
         plugins: [
           'gatsby-remark-prismjs',

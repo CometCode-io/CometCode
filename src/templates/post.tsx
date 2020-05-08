@@ -11,6 +11,9 @@ import TagsContainer from '../components/tags-container';
 import { Helmet } from 'react-helmet';
 import config from '../website-config';
 import ReadNext from '../components/read-next';
+import { css } from '@emotion/core';
+import Card from 'antd/lib/card';
+import { Col, Row } from 'antd/lib/grid';
 
 const { Content } = Layout;
 
@@ -20,6 +23,9 @@ interface PostPageProps {
     mdx: {
       body: string;
       frontmatter: PostFrontMatter;
+      tableOfContents: {
+        items: Array<{ url: string; title: string }>;
+      };
     };
     relatedPosts: {
       totalCount: number;
@@ -37,12 +43,30 @@ const DatePublished = styled.h4`
   font-weight: normal;
 `;
 
+const Toc = css`
+  right: 1rem;
+  max-height: 300px;
+  width: 310px;
+  display: flex;
+  border-radius: 20px;
+  margin-left: auto;
+`;
+
+const TocLink = styled.a`
+  color: #141f35;
+  text-decoration: underline;
+`;
+
+const InnerScroll = styled.div`
+  overflow: hidden;
+  overflow-y: scroll;
+`;
+
 const PostPageTemplate: React.FC<PostPageProps> = (props) => {
-  console.log(props);
-  const post = props.data.mdx;
-  const pageDescription = props.data.mdx.frontmatter.excerpt;
+  const { body, frontmatter, tableOfContents } = props.data.mdx;
+  const pageDescription = frontmatter.excerpt;
   const pageUrl = `${config.siteUrl}/${props.path}`;
-  const pageTitle = props.data.mdx.frontmatter.title + ' - ' + config.title;
+  const pageTitle = frontmatter.title + ' - ' + config.title;
   return (
     <div>
       <Helmet>
@@ -54,10 +78,10 @@ const PostPageTemplate: React.FC<PostPageProps> = (props) => {
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:url" content={pageUrl} />
-        {props.data.mdx.frontmatter.image ? (
+        {frontmatter.image ? (
           <meta
             property="og:image"
-            content={`${config.siteUrl}${props.data.mdx.frontmatter.image.childImageSharp.fixed.src}`}
+            content={`${config.siteUrl}${frontmatter.image.childImageSharp.fixed.src}`}
           />
         ) : null}
         {config.facebook && (
@@ -67,10 +91,10 @@ const PostPageTemplate: React.FC<PostPageProps> = (props) => {
         <meta name="twitter:title" content="Snippets" />
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:url" content={pageUrl} />
-        {props.data.mdx.frontmatter.image ? (
+        {frontmatter.image ? (
           <meta
             name="twitter:image"
-            content={`${config.siteUrl}${props.data.mdx.frontmatter.image.childImageSharp.fixed.src}`}
+            content={`${config.siteUrl}${frontmatter.image.childImageSharp.fixed.src}`}
           />
         ) : null}
         {config.twitter && (
@@ -82,28 +106,43 @@ const PostPageTemplate: React.FC<PostPageProps> = (props) => {
       </Helmet>
       <NavComponent activeLink="/tutorials">
         <Content>
-          {props.data.mdx.frontmatter.image ? (
+          {frontmatter.image ? (
             <Img
               alt="Post Image"
-              fluid={props.data.mdx.frontmatter.image.childImageSharp.fluid}
+              fluid={frontmatter.image.childImageSharp.fluid}
             />
           ) : null}
           <div className="container">
-            <PostTitle>{props.data.mdx.frontmatter.title}</PostTitle>
-            <TagsContainer
-              tags={props.data.mdx.frontmatter.tags}
-              size={'small'}
-            />
-            <AuthorComponent author={props.data.mdx.frontmatter.author[0]} />
-            <DatePublished>{post.frontmatter.date}</DatePublished>
-            <MDXRenderer>{post.body}</MDXRenderer>
+            <Row>
+              <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+                <PostTitle>{frontmatter.title}</PostTitle>
+                <TagsContainer tags={frontmatter.tags} size={'small'} />
+                <AuthorComponent author={frontmatter.author[0]} />
+                <DatePublished>{frontmatter.date}</DatePublished>
+              </Col>
+              <Col xs={24} sm={24} md={12} lg={12} xl={12} className="py1">
+                {typeof tableOfContents.items === 'undefined' ? null : (
+                  <Card css={Toc}>
+                    <InnerScroll>
+                      <h2 style={{ color: '#141f35', fontWeight: 'bold' }}>
+                        Table of contents
+                      </h2>
+                      {tableOfContents.items.map((i) => (
+                        <li key={i.url}>
+                          <TocLink href={i.url} key={i.url}>
+                            # {i.title}
+                          </TocLink>
+                        </li>
+                      ))}
+                    </InnerScroll>
+                  </Card>
+                )}
+              </Col>
+            </Row>
+            <MDXRenderer>{body}</MDXRenderer>
             <ReadNext
               relatedContent={props.data.relatedPosts.edges
-                .filter(
-                  (p) =>
-                    p.node.frontmatter.title !==
-                    props.data.mdx.frontmatter.title
-                )
+                .filter((p) => p.node.frontmatter.title !== frontmatter.title)
                 .map((a) => a.node)}
             />
           </div>
@@ -117,6 +156,7 @@ export const query = graphql`
   query($slug: String, $primaryTag: String) {
     mdx(fields: { slug: { eq: $slug } }) {
       body
+      tableOfContents
       frontmatter {
         title
         layout
