@@ -9,8 +9,10 @@ import {
 } from '@ant-design/icons/lib';
 import styled from '@emotion/styled';
 import * as styles from '../pages/index.module.scss';
-import { Link } from 'gatsby';
 import { Helmet } from 'react-helmet';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 
 const { Header, Footer, Sider } = Layout;
 
@@ -127,11 +129,11 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
             <Menu.Item
               key="/"
               icon={
-                <Link to="/">
+                <AniLink cover to="/" direction="right" bg="#141f35">
                   <HomeOutlined
                     style={{ fontSize: '30px', fontWeight: 'bolder' }}
                   />
-                </Link>
+                </AniLink>
               }
               title="Home"
             >
@@ -140,11 +142,11 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
             <Menu.Item
               key="/tags"
               icon={
-                <Link to="/tags">
+                <AniLink cover direction="right" bg="#141f35" to="/tags">
                   <TagOutlined
                     style={{ fontSize: '30px', fontWeight: 'bolder' }}
                   />
-                </Link>
+                </AniLink>
               }
               title="Tags"
             >
@@ -153,11 +155,11 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
             <Menu.Item
               key="/snippets"
               icon={
-                <Link to="/snippets">
+                <AniLink to="/snippets" direction="right" bg="#141f35">
                   <ToolOutlined
                     style={{ fontSize: '30px', fontWeight: 'bolder' }}
                   />
-                </Link>
+                </AniLink>
               }
               title="Tags"
             >

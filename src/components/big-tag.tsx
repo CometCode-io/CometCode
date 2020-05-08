@@ -3,8 +3,10 @@ import { css } from '@emotion/core';
 import * as styles from '../pages/index.module.scss';
 import { Tag } from 'antd';
 import { TagData } from '../interfaces';
-import { Link } from 'gatsby';
 import * as _ from 'lodash';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 
 interface BigTagTemplateProps {
   tag: TagData;
@@ -39,7 +41,14 @@ const BigTag: React.FC<BigTagTemplateProps> = ({ tag, size, children }) => {
       color={tag.color}
       className={styles.bigTag}
     >
-      <Link to={'/tags/' + _.kebabCase(tag.id)}>{children}</Link>
+      <AniLink
+        cover
+        direction="top"
+        bg="#141f35"
+        to={'/tags/' + _.kebabCase(tag.id)}
+      >
+        {children}
+      </AniLink>
     </Tag>
   );
 };
