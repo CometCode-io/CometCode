@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
   siteMetadata: {
     name: 'Comet  Code',
-    tagline: 'Ez Pz Software💪',
+    tagline: 'Tutorials and Projects for the Modern Developer💪',
   },
   mapping: {
     'Mdx.frontmatter.author': 'ContributorYaml',
