@@ -83,12 +83,6 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
     });
   };
 
-  clickToggle = () => {
-    if (this.isMobile()) {
-      this.toggle();
-    }
-  };
-
   siderStyle(): CSSProperties {
     return {
       position: 'fixed',
@@ -117,7 +111,6 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
           collapsed={this.state.collapsed}
           collapsedWidth={this.state.collapsedWidth}
           style={this.siderStyle()}
-          onClick={this.clickToggle}
         >
           <div className="logo" />
           <Menu
@@ -155,7 +148,7 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
             <Menu.Item
               key="/snippets"
               icon={
-                <AniLink to="/snippets" direction="right" bg="#141f35">
+                <AniLink cover to="/snippets" direction="right" bg="#141f35">
                   <ToolOutlined
                     style={{ fontSize: '30px', fontWeight: 'bolder' }}
                   />

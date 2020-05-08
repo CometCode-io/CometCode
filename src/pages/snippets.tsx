@@ -1,19 +1,19 @@
 import React from 'react';
 import NavComponent from '../components/nav';
 import { Layout } from 'antd';
-import { GatsbyGenericNode, Image, SnippetNode, TagData } from '../interfaces';
+import { GatsbyGenericNode, Image, PostNode, TagData } from '../interfaces';
 import { graphql } from 'gatsby';
 import { Col, Row } from 'antd/lib/grid';
-import SnippetCard from '../components/snippet-card';
 import styled from '@emotion/styled';
 import { Helmet } from 'react-helmet';
 import config from '../website-config';
+import PostCard from '../components/post-card';
 const { Content } = Layout;
 
 interface SnippetsPageProps {
   data: {
     allMdx: {
-      edges: GatsbyGenericNode<SnippetNode>[];
+      edges: GatsbyGenericNode<PostNode>[];
     };
     tagInformation: {
       edges: GatsbyGenericNode<TagData>[];
@@ -90,9 +90,11 @@ const SnippetsPage: React.FC<SnippetsPageProps> = (props) => {
                   xs={24}
                   key={snippet.node.frontmatter.title}
                 >
-                  <SnippetCard
-                    snippet={snippet.node.frontmatter}
-                    snippetUrl={snippet.node.fields.slug}
+                  <PostCard
+                    post={snippet.node.frontmatter}
+                    postUrl={snippet.node.fields.slug}
+                    layout={snippet.node.fields.layout}
+                    tagData={snippet.node.frontmatter.tags}
                   />
                 </Col>
               ))}

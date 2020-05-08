@@ -67,6 +67,7 @@ exports.createPages = async ({ graphql, actions }) => {
         slug,
         prev,
         next,
+        primaryTag: node.frontmatter.tags[0].id,
       },
     });
   });

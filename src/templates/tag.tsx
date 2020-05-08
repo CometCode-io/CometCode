@@ -7,7 +7,6 @@ const { Content } = Layout;
 import { Col, Row } from 'antd/lib/grid';
 import PostCard from '../components/post-card';
 import styled from '@emotion/styled';
-import SnippetCard from '../components/snippet-card';
 import { Helmet } from 'react-helmet';
 import config from '../website-config';
 
@@ -28,7 +27,6 @@ export const query = graphql`
         node {
           frontmatter {
             title
-            layout
             excerpt
             tags {
               color
@@ -54,6 +52,7 @@ export const query = graphql`
           }
           fields {
             slug
+            layout
           }
         }
       }
@@ -87,10 +86,10 @@ interface TagPageProps {
 const TagPageTemplate: React.FC<TagPageProps> = ({ data, path }) => {
   const tag = data.tagInformation.edges[0].node;
   const posts = data.filteredPosts?.edges.filter(
-    (item) => item.node.frontmatter.layout === 'post'
+    (item) => item.node.fields.layout === 'post'
   );
   const snippets = data.filteredPosts?.edges.filter(
-    (item) => item.node.frontmatter.layout === 'snippet'
+    (item) => item.node.fields.layout === 'snippet'
   );
 
   const pageDescription = tag.description;
@@ -146,19 +145,22 @@ const TagPageTemplate: React.FC<TagPageProps> = ({ data, path }) => {
                 posts.map((post) => (
                   <Col
                     span={12}
-                    xl={12}
-                    lg={12}
+                    xl={8}
+                    lg={8}
                     md={12}
                     sm={24}
                     xs={24}
                     key={post.node.frontmatter.title}
+                    className="p1"
                   >
                     <PostCard
                       post={post.node.frontmatter}
+                      layout={post.node.fields.layout}
                       postUrl={post.node.fields.slug}
                       tagData={data.tagInformation.edges.map(
                         (tagNode) => tagNode.node
                       )}
+                      size="small"
                     />
                   </Col>
                 ))
@@ -174,16 +176,20 @@ const TagPageTemplate: React.FC<TagPageProps> = ({ data, path }) => {
                 snippets.map((snippet) => (
                   <Col
                     span={12}
-                    xl={12}
-                    lg={12}
+                    xl={8}
+                    lg={8}
                     md={12}
                     sm={24}
                     xs={24}
                     key={snippet.node.frontmatter.title}
+                    className="p1"
                   >
-                    <SnippetCard
-                      snippet={snippet.node.frontmatter}
-                      snippetUrl={snippet.node.fields.slug}
+                    <PostCard
+                      post={snippet.node.frontmatter}
+                      postUrl={snippet.node.fields.slug}
+                      tagData={snippet.node.frontmatter.tags}
+                      layout={snippet.node.fields.layout}
+                      size="small"
                     />
                   </Col>
                 ))

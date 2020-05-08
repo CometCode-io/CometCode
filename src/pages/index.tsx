@@ -2,7 +2,7 @@ import { graphql } from 'gatsby';
 import * as React from 'react';
 import { Layout } from 'antd';
 import { Col, Row } from 'antd/lib/grid';
-import { IndexPageProps, TagData } from '../interfaces';
+import { GatsbyGenericNode, Image, PostNode, TagData } from '../interfaces';
 import NavComponent from '../components/nav';
 import PostCard from '../components/post-card';
 import styled from '@emotion/styled';
@@ -71,13 +71,30 @@ export const query = graphql`
   }
 `;
 
+export interface IndexPageProps {
+  data: {
+    siteBanner: Image;
+    posts: {
+      edges: GatsbyGenericNode<PostNode>[];
+    };
+    tagsGroup: {
+      group: Array<{
+        tag: any;
+      }>;
+    };
+    tagInformation: {
+      edges: GatsbyGenericNode<TagData>[];
+    };
+  };
+}
+
 export default class IndexPage extends React.Component<
   IndexPageProps,
   Record<string, unknown>
 > {
   render() {
     const allTags: TagData[] = this.props.data.tagInformation.edges.map(
-      (tag) => tag.node
+      (tag: GatsbyGenericNode<TagData>) => tag.node
     );
     return (
       <div>
@@ -134,23 +151,27 @@ export default class IndexPage extends React.Component<
                 <h1>Recent</h1>
               </Row>
               <Row>
-                {this.props.data.posts.edges.map((post) => (
-                  <Col
-                    span={12}
-                    xl={12}
-                    lg={12}
-                    md={12}
-                    sm={24}
-                    xs={24}
-                    key={post.node.frontmatter.title}
-                  >
-                    <PostCard
-                      post={post.node.frontmatter}
-                      postUrl={post.node.fields.slug}
-                      tagData={post.node.frontmatter.tags}
-                    />
-                  </Col>
-                ))}
+                {this.props.data.posts.edges.map(
+                  (post: GatsbyGenericNode<PostNode>) => (
+                    <Col
+                      span={12}
+                      xl={12}
+                      lg={12}
+                      md={12}
+                      sm={24}
+                      xs={24}
+                      key={post.node.frontmatter.title}
+                      className="md-p2 py1"
+                    >
+                      <PostCard
+                        post={post.node.frontmatter}
+                        postUrl={post.node.fields.slug}
+                        tagData={post.node.frontmatter.tags}
+                        layout={post.node.fields.layout}
+                      />
+                    </Col>
+                  )
+                )}
               </Row>
             </div>
           </Content>
