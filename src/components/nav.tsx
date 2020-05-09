@@ -34,7 +34,7 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
     super(props);
 
     if (typeof window !== 'undefined') {
-      if (window.innerWidth < 700) {
+      if (window.innerWidth <= 700) {
         this.state = {
           collapsed: true,
           collapsedWidth: 0,
@@ -69,6 +69,7 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
   resize() {
     this.setState({
       collapsedWidth: window.innerWidth <= 700 ? 0 : 80,
+      leftPadding: window.innerWidth <= 700 ? 0 : 80,
     });
   }
 
@@ -144,7 +145,7 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
               }
               title="Home"
             >
-              <NavText style={this.labelStyle()}>Home</NavText>
+              <NavText style={this.labelStyle()}>Search</NavText>
             </Menu.Item>
             <Menu.Item
               key="/tags"

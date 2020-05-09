@@ -81,7 +81,10 @@ const SnippetsPage: React.FC<SnippetsPageProps> = (props) => {
               <h1>Recent</h1>
             </Row>
             <Masonry
-              breakpointCols={2}
+              breakpointCols={{
+                default: 2,
+                769: 1,
+              }}
               className="my-masonry-grid"
               columnClassName="my-masonry-grid_column"
             >

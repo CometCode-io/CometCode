@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import NavComponent from '../components/nav';
 import { Layout } from 'antd';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
@@ -48,13 +48,7 @@ const Toc = css`
   max-height: 300px;
   width: 310px;
   display: flex;
-  border-radius: 20px;
   margin-left: auto;
-`;
-
-const TocLink = styled.a`
-  color: #141f35;
-  text-decoration: underline;
 `;
 
 const InnerScroll = styled.div`
@@ -130,9 +124,9 @@ const PostPageTemplate: React.FC<PostPageProps> = (props) => {
                       </h2>
                       {tableOfContents.items.map((i) => (
                         <li key={i.url}>
-                          <TocLink href={i.url} key={i.url}>
+                          <Link to={`${props.path}/${i.url}`} key={i.url}>
                             # {i.title}
-                          </TocLink>
+                          </Link>
                         </li>
                       ))}
                     </InnerScroll>
