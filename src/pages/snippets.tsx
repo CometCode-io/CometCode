@@ -86,15 +86,7 @@ const SnippetsPage: React.FC<SnippetsPageProps> = (props) => {
               columnClassName="my-masonry-grid_column"
             >
               {props.data.allMdx.edges.map((snippet) => (
-                <Col
-                  span={12}
-                  xl={12}
-                  lg={12}
-                  md={12}
-                  sm={24}
-                  xs={24}
-                  key={snippet.node.frontmatter.title}
-                >
+                <Col span={24} key={snippet.node.frontmatter.title}>
                   <PostCard
                     post={snippet.node.frontmatter}
                     postUrl={snippet.node.fields.slug}
