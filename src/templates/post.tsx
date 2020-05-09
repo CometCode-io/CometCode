@@ -14,6 +14,8 @@ import ReadNext from '../components/read-next';
 import { css } from '@emotion/core';
 import Card from 'antd/lib/card';
 import { Col, Row } from 'antd/lib/grid';
+import Timeline from 'antd/lib/timeline';
+import Paragraph from 'antd/lib/typography/Paragraph';
 
 const { Content } = Layout;
 
@@ -49,11 +51,20 @@ const Toc = css`
   width: 310px;
   display: flex;
   margin-left: auto;
+
+  .ant-card-body {
+    padding: 1rem !important;
+    overflow: scroll;
+  }
+
+  .ant-timeline-item-content {
+    min-height: auto;
+  }
 `;
 
-const InnerScroll = styled.div`
-  overflow: hidden;
-  overflow-y: scroll;
+const tocLink = css`
+  color: #000c17;
+  font-weight: lighter;
 `;
 
 const PostPageTemplate: React.FC<PostPageProps> = (props) => {
@@ -118,18 +129,38 @@ const PostPageTemplate: React.FC<PostPageProps> = (props) => {
               <Col xs={24} sm={24} md={12} lg={12} xl={12} className="py1">
                 {typeof tableOfContents.items === 'undefined' ? null : (
                   <Card css={Toc}>
-                    <InnerScroll>
-                      <h2 style={{ color: '#141f35', fontWeight: 'bold' }}>
-                        Table of contents
-                      </h2>
+                    <h2
+                      style={{
+                        color: '#141f35',
+                        fontWeight: 'bold',
+                        marginBottom: '1.5rem',
+                      }}
+                    >
+                      Table of contents
+                    </h2>
+                    <Timeline>
                       {tableOfContents.items.map((i) => (
-                        <li key={i.url}>
-                          <Link to={`${props.path}/${i.url}`} key={i.url}>
-                            # {i.title}
+                        <Timeline.Item
+                          key={i.url}
+                          style={{
+                            paddingBottom: '0',
+                          }}
+                        >
+                          <Link
+                            to={`${props.path}/${i.url}`}
+                            key={i.url}
+                            css={tocLink}
+                          >
+                            <Paragraph
+                              ellipsis
+                              style={{ marginBottom: '0.5rem' }}
+                            >
+                              # {i.title}
+                            </Paragraph>
                           </Link>
-                        </li>
+                        </Timeline.Item>
                       ))}
-                    </InnerScroll>
+                    </Timeline>
                   </Card>
                 )}
               </Col>
