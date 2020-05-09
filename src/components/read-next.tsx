@@ -8,34 +8,38 @@ interface ReadNextProps {
 }
 
 const ReadNext: React.FC<ReadNextProps> = ({ relatedContent }) => {
-  return (
-    <div>
-      <Row>
-        <Col span={24} className="text-center">
-          <h2>Related Content</h2>
-        </Col>
-        {relatedContent.map((post) => (
-          <Col
-            span={12}
-            xl={8}
-            lg={8}
-            md={12}
-            sm={24}
-            xs={24}
-            key={post.frontmatter.title}
-            className="p1"
-          >
-            <PostCard
-              post={post.frontmatter}
-              postUrl={post.fields.slug}
-              tagData={post.frontmatter.tags}
-              size="small"
-            />
+  if (relatedContent.length !== 0) {
+    return (
+      <div>
+        <Row>
+          <Col span={24} className="text-center">
+            <h2>Related Content</h2>
           </Col>
-        ))}
-      </Row>
-    </div>
-  );
+          {relatedContent.map((post) => (
+            <Col
+              span={12}
+              xl={8}
+              lg={8}
+              md={12}
+              sm={24}
+              xs={24}
+              key={post.frontmatter.title}
+              className="p1"
+            >
+              <PostCard
+                post={post.frontmatter}
+                postUrl={post.fields.slug}
+                tagData={post.frontmatter.tags}
+                size="small"
+              />
+            </Col>
+          ))}
+        </Row>
+      </div>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default ReadNext;

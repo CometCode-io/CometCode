@@ -1,3 +1,6 @@
 - id: 'About'
   color: '#1ABC9C'
   description: "Various Meta posts about this website"
+- id: 'Git'
+  color: '#9842f5'
+  description: 'Your favorite Version Control Software'
