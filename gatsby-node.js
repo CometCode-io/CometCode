@@ -52,7 +52,6 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   const posts = result.data.allPosts.edges;
-  console.log(result.data);
 
   posts.forEach(({ node }) => {
     const { slug, layout } = node.fields;
