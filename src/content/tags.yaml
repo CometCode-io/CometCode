@@ -7,3 +7,6 @@
 - id: 'Hyper'
   color: '#0f2a54'
   description: 'The best cross platform terminal around. Super configurable, super smooth'
+- id: 'Gatsby'
+  color: '#e16ce6'
+  description: 'Gatsby is a React-based, GraphQL powered, static site generator. What does that even mean?  Well, it weaves together the best parts of React, webpack, react-router, GraphQL, and other front-end tools in to one very enjoyable developer experience.'

@@ -44,7 +44,8 @@ const CopyCode = styled.button`
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-export const Code = ({ codeString, language, ...props }) => {
+export const Code = ({ fileName, codeString, language, ...props }) => {
+  console.log(fileName);
   if (props['react-live']) {
     return (
       <LiveProvider code={codeString} noInline={true} theme={theme}>
@@ -65,17 +66,20 @@ export const Code = ({ codeString, language, ...props }) => {
       theme={theme}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <Pre className={className} style={style}>
-          <CopyCode onClick={handleClick}>Copy</CopyCode>
-          {tokens.map((line, i) => (
-            <div {...getLineProps({ line, key: i })} key={i}>
-              <LineNo>{i + 1}</LineNo>
-              {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} key={key} />
-              ))}
-            </div>
-          ))}
-        </Pre>
+        <>
+          <Pre className={className} style={style}>
+            <CopyCode onClick={handleClick}>Copy</CopyCode>
+            {fileName ? <h3 style={{ color: 'white' }}>{fileName}</h3> : null}
+            {tokens.map((line, i) => (
+              <div {...getLineProps({ line, key: i })} key={i}>
+                <LineNo>{i + 1}</LineNo>
+                {line.map((token, key) => (
+                  <span {...getTokenProps({ token, key })} key={key} />
+                ))}
+              </div>
+            ))}
+          </Pre>
+        </>
       )}
     </Highlight>
   );
