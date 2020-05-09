@@ -66,6 +66,7 @@ const PostPageTemplate: React.FC<PostPageProps> = (props) => {
   const { body, frontmatter, tableOfContents } = props.data.mdx;
   const pageDescription = frontmatter.excerpt;
   const pageUrl = `${config.siteUrl}/${props.path}`;
+  console.log(frontmatter);
   const pageTitle = frontmatter.title + ' - ' + config.title;
   return (
     <div>

@@ -58,6 +58,17 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        // The property ID; the tracking code won't be generated without it
+        trackingId: process.env.GOOGLE_ID,
+        // Defines where to place the tracking script - `true` in the head and `false` in the body
+        head: true, // Any additional optional fields
+        sampleRate: 5,
+        siteSpeedSampleRate: 10,
+      },
+    },
+    {
       resolve: `gatsby-plugin-algolia`,
       options: {
         appId: process.env.GATSBY_ALGOLIA_APP_ID,

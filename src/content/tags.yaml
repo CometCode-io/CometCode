@@ -4,3 +4,6 @@
 - id: 'Git'
   color: '#9842f5'
   description: 'Your favorite Version Control Software'
+- id: 'Hyper'
+  color: '#0f2a54'
+  description: 'The best cross platform terminal around. Super configurable, super smooth'

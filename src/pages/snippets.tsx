@@ -8,6 +8,7 @@ import styled from '@emotion/styled';
 import { Helmet } from 'react-helmet';
 import config from '../website-config';
 import PostCard from '../components/post-card';
+import Masonry from 'react-masonry-css';
 const { Content } = Layout;
 
 interface SnippetsPageProps {
@@ -79,7 +80,11 @@ const SnippetsPage: React.FC<SnippetsPageProps> = (props) => {
             <Row>
               <h1>Recent</h1>
             </Row>
-            <Row>
+            <Masonry
+              breakpointCols={2}
+              className="my-masonry-grid"
+              columnClassName="my-masonry-grid_column"
+            >
               {props.data.allMdx.edges.map((snippet) => (
                 <Col
                   span={12}
@@ -97,7 +102,7 @@ const SnippetsPage: React.FC<SnippetsPageProps> = (props) => {
                   />
                 </Col>
               ))}
-            </Row>
+            </Masonry>
           </div>
         </Content>
       </NavComponent>

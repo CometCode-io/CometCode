@@ -4,7 +4,6 @@ import React from 'react';
 import { copyToClipboard } from '../utils/copy-to-clipboard';
 import styled from '@emotion/styled';
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
-import { css } from '@emotion/core';
 
 export const Pre = styled.pre`
   text-align: left;
@@ -49,7 +48,7 @@ export const Code = ({ codeString, language, ...props }) => {
   if (props['react-live']) {
     return (
       <LiveProvider code={codeString} noInline={true} theme={theme}>
-        <LiveEditor style={{borderRadius: 10}} />
+        <LiveEditor style={{ borderRadius: 10 }} />
         <LiveError />
         <LivePreview />
       </LiveProvider>
@@ -72,7 +71,7 @@ export const Code = ({ codeString, language, ...props }) => {
             <div {...getLineProps({ line, key: i })} key={i}>
               <LineNo>{i + 1}</LineNo>
               {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} key={key}/>
+                <span {...getTokenProps({ token, key })} key={key} />
               ))}
             </div>
           ))}

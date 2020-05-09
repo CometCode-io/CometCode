@@ -9,6 +9,7 @@ import styled from '@emotion/styled';
 import TagsContainer from '../components/tags-container';
 import config from '../website-config';
 import { Helmet } from 'react-helmet';
+import Masonry from 'react-masonry-css';
 
 const { Content } = Layout;
 
@@ -150,16 +151,15 @@ export default class IndexPage extends React.Component<
               <Row>
                 <h1>Recent</h1>
               </Row>
-              <Row>
+              <Masonry
+                breakpointCols={2}
+                className="my-masonry-grid"
+                columnClassName="my-masonry-grid_column"
+              >
                 {this.props.data.posts.edges.map(
                   (post: GatsbyGenericNode<PostNode>) => (
                     <Col
-                      span={12}
-                      xl={12}
-                      lg={12}
-                      md={12}
-                      sm={24}
-                      xs={24}
+                      span={24}
                       key={post.node.frontmatter.title}
                       className="md-p2 py1"
                     >
@@ -171,7 +171,7 @@ export default class IndexPage extends React.Component<
                     </Col>
                   )
                 )}
-              </Row>
+              </Masonry>
             </div>
           </Content>
         </NavComponent>

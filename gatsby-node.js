@@ -52,11 +52,10 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   const posts = result.data.allPosts.edges;
+  console.log(result.data);
 
-  posts.forEach(({ node }, index) => {
+  posts.forEach(({ node }) => {
     const { slug, layout } = node.fields;
-    const prev = index === 0 ? null : posts[index - 1].node;
-    const next = index === posts.length - 1 ? null : posts[index + 1].node;
 
     createPage({
       path: slug,
@@ -65,8 +64,6 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         // Data passed to context is available in page queries as GraphQL variables.
         slug,
-        prev,
-        next,
         primaryTag: node.frontmatter.tags[0].id,
       },
     });
