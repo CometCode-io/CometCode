@@ -14,7 +14,6 @@ const InlineCode = styled.code`
 
 const components = {
   pre: ({ children: { props } }) => {
-    console.log(props.metastring);
     if (props.mdxType === 'code') {
       return (
         <Code

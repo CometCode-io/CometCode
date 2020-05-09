@@ -13,6 +13,14 @@ module.exports = {
     'Mdx.frontmatter.tags': 'TagsYaml',
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-sharp',
+      options: {
+        quality: 100,
+        stripMetadata: true,
+      },
+    },
+    'gatsby-transformer-sharp',
     'gatsby-plugin-sass',
     'gatsby-plugin-less',
     'gatsby-plugin-typescript',
@@ -20,7 +28,6 @@ module.exports = {
     'gatsby-plugin-antd',
     'gatsby-transformer-yaml',
     'gatsby-plugin-emotion',
-    'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     `gatsby-plugin-transition-link`,
     {
@@ -28,13 +35,6 @@ module.exports = {
       options: {
         name: 'content',
         path: path.join(__dirname, 'src', 'content'),
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-sharp',
-      options: {
-        quality: 100,
-        stripMetadata: true,
       },
     },
     {

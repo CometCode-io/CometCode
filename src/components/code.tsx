@@ -45,7 +45,6 @@ const CopyCode = styled.button`
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 export const Code = ({ fileName, codeString, language, ...props }) => {
-  console.log(fileName);
   if (props['react-live']) {
     return (
       <LiveProvider code={codeString} noInline={true} theme={theme}>
