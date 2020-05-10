@@ -54,7 +54,7 @@ const Toc = css`
 
   .ant-card-body {
     padding: 1rem !important;
-    overflow: scroll;
+    overflow: auto;
   }
 
   .ant-timeline-item-content {

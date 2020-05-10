@@ -57,6 +57,7 @@
     "react-instantsearch-dom": "^6.4.0",
     "react-live": "^2.2.2",
     "react-masonry-css": "^1.0.14",
+    "refractor": "^3.0.0",
     "typescript": "^3.5.3",
     "webpack": "^4.36.1"
   },
