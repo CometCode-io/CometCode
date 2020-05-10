@@ -183,13 +183,6 @@ export const query = graphql`
       body
       tableOfContents
       frontmatter {
-        title
-        layout
-        tags {
-          id
-          color
-        }
-        excerpt
         image {
           childImageSharp {
             fluid(maxWidth: 3720) {
@@ -200,6 +193,13 @@ export const query = graphql`
             }
           }
         }
+        title
+        layout
+        tags {
+          id
+          color
+        }
+        excerpt
         author {
           name
           profileImage {

@@ -32,18 +32,18 @@ export const query = graphql`
             slug
           }
           frontmatter {
-            title
-            layout
-            tags {
-              id
-              color
-            }
             image {
               childImageSharp {
                 fluid(maxWidth: 3720) {
                   ...GatsbyImageSharpFluid
                 }
               }
+            }
+            title
+            layout
+            tags {
+              id
+              color
             }
             author {
               name
