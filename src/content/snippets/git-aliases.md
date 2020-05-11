@@ -3,7 +3,6 @@ layout: snippet
 title: 'My Favorite Git Aliases'
 author: [Caelin]
 tags: [Git]
-image: img/site-banner.png
 date: '2020-05-08'
 excerpt: How many times a day do you think you use git commands? Speed up your development time with some git aliases
 ---

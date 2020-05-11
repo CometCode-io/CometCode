@@ -143,7 +143,7 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
                   />
                 </AniLink>
               }
-              title="Home"
+              title="Search"
             >
               <NavText style={this.labelStyle()}>Search</NavText>
             </Menu.Item>
@@ -169,7 +169,7 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
                   />
                 </AniLink>
               }
-              title="Tags"
+              title="Snippets"
             >
               <NavText style={this.labelStyle()}>Snippets</NavText>
             </Menu.Item>
