@@ -66,6 +66,12 @@ const tocLink = css`
   font-weight: lighter;
 `;
 
+const mdxStyles = css`
+  img {
+    width: 100% !important;
+  }
+`;
+
 const PostPageTemplate: React.FC<PostPageProps> = (props) => {
   const { body, frontmatter, tableOfContents } = props.data.mdx;
   const pageDescription = frontmatter.excerpt;
@@ -174,7 +180,7 @@ const PostPageTemplate: React.FC<PostPageProps> = (props) => {
                 )}
               </Col>
             </Row>
-            <MDXRenderer>{body}</MDXRenderer>
+            <MDXRenderer css={mdxStyles}>{body}</MDXRenderer>
             <ReadNext
               relatedContent={props.data.relatedPosts.edges
                 .filter((p) => p.node.frontmatter.title !== frontmatter.title)

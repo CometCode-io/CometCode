@@ -12,6 +12,10 @@ const InlineCode = styled.code`
   font-weight: bold;
 `;
 
+const StyledImage = styled.img`
+  max-width: 100%;
+`;
+
 const components = {
   pre: ({ children: { props } }) => {
     if (props.mdxType === 'code') {
@@ -29,6 +33,8 @@ const components = {
   inlineCode: (a) => {
     return <InlineCode {...a} />;
   },
+  // eslint-disable-next-line react/display-name
+  img: (props) => <StyledImage {...props} />,
 };
 
 export const wrapRootElement = ({ element }) => (
