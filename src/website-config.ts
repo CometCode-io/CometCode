@@ -1,8 +1,6 @@
 export interface WebsiteConfig {
   title: string;
   description: string;
-  coverImage?: string;
-  logo: string;
   /**
    * Specifying a valid BCP 47 language helps screen readers announce text properly.
    * See: https://dequeuniversity.com/rules/axe/2.2/valid-lang
@@ -35,10 +33,8 @@ export interface WebsiteConfig {
 const config: WebsiteConfig = {
   title: 'Comet Code',
   description: 'Guides and Tutorials for the modern developer',
-  coverImage: 'img/blog-cover.png',
-  logo: 'img/ghost-logo.png',
   lang: 'en',
-  siteUrl: 'https://comet-code.io',
+  siteUrl: 'https://cometcode.io',
   facebook: 'https://www.facebook.com/profile.php?id=100009515539064',
   twitter: 'https://twitter.com/caelin_sutch',
   googleSiteVerification: 'GoogleCode',
