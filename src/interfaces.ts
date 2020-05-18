@@ -14,6 +14,7 @@ export interface PostFrontMatter {
   tags: TagData[];
   author: Author[];
   image?: Image;
+  smallImage?: boolean;
 }
 
 export interface Author {

@@ -51,10 +51,9 @@ const Toc = css`
   width: 310px;
   display: flex;
   margin-left: auto;
-
+  overflow: auto;
   .ant-card-body {
     padding: 1rem !important;
-    overflow: auto;
   }
 
   .ant-timeline-item-content {
@@ -111,17 +110,28 @@ const PostPageTemplate: React.FC<PostPageProps> = (props) => {
       </Helmet>
       <NavComponent activeLink="/tutorials">
         <Content>
-          {frontmatter.image ? (
+          {frontmatter.image && !frontmatter.smallImage ? (
             <Img
               alt="Post Image"
               fluid={frontmatter.image.childImageSharp.fluid}
             />
           ) : null}
           <div className="container">
+            {frontmatter.image && frontmatter.smallImage ? (
+              <Img
+                alt="Post Small Image"
+                fluid={frontmatter.image?.childImageSharp.fluid}
+                style={{ marginBottom: 20 }}
+              />
+            ) : null}
             <Row>
               <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                 <PostTitle>{frontmatter.title}</PostTitle>
-                <TagsContainer tags={frontmatter.tags} size={'small'} />
+                <TagsContainer
+                  tags={frontmatter.tags}
+                  size={'small'}
+                  align={'left'}
+                />
                 <AuthorComponent author={frontmatter.author[0]} />
                 <DatePublished>{frontmatter.date}</DatePublished>
               </Col>
@@ -193,6 +203,7 @@ export const query = graphql`
             }
           }
         }
+        smallImage
         title
         layout
         tags {

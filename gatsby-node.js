@@ -55,7 +55,6 @@ exports.createPages = async ({ graphql, actions }) => {
 
   posts.forEach(({ node }) => {
     const { slug, layout } = node.fields;
-
     createPage({
       path: slug,
       // Note that the template has to exist first, or else the build will fail.

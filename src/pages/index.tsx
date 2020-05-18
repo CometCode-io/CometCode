@@ -145,7 +145,11 @@ export default class IndexPage extends React.Component<
                 </Col>
                 <Col span={24}>
                   <TagTitle>What do you want to learn about today?</TagTitle>
-                  <TagsContainer tags={allTags} size={'large'} />
+                  <TagsContainer
+                    tags={allTags}
+                    size={'large'}
+                    align={'center'}
+                  />
                 </Col>
               </Row>
               <Row>
