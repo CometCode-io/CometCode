@@ -26,7 +26,7 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
 
   state = {
     collapsed: true,
-    collapsedWidth: 0,
+    collapsedWidth: 80,
     leftPadding: 0,
   };
 
