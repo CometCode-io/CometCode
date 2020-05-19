@@ -27,4 +27,8 @@
   description: 'Anything relating to the theory of software development or design.'
 - id: 'UI'
   color: '#e37449'
+  description: 'UI design, or User Interface design, is an essential part of developing good software.'
+- id: 'Regex'
+  color: '#e37449'
+  description: 'Confusing? Yes. Essential? Unfortunately yes'
 
