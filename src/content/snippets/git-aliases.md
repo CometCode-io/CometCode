@@ -22,7 +22,7 @@ If you're using bash (default on ubuntu and non MacOS Catalina), open your bashr
 Here's my favorites:
 
 ```shell script
-# Run g for git
+# Run gpo for git
 alias g=git
 # Use c "Commet Message"
 alias c="git add -A && git commit -m "

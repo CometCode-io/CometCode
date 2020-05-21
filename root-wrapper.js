@@ -16,6 +16,14 @@ const StyledImage = styled.img`
   max-width: 100%;
 `;
 
+const StyledText = styled.text`
+  font-size: 16px;
+`;
+
+const StyledP = styled.p`
+  font-size: 18px;
+`;
+
 const components = {
   pre: ({ children: { props } }) => {
     if (props.mdxType === 'code') {
@@ -35,6 +43,10 @@ const components = {
   },
   // eslint-disable-next-line react/display-name
   img: (props) => <StyledImage {...props} />,
+  // eslint-disable-next-line react/display-name
+  text: (props) => <StyledText {...props} />,
+  // eslint-disable-next-line react/display-name
+  p: (props) => <StyledP {...props} />,
 };
 
 export const wrapRootElement = ({ element }) => (

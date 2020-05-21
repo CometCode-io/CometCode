@@ -31,4 +31,7 @@
 - id: 'Regex'
   color: '#e37449'
   description: 'Confusing? Yes. Essential? Unfortunately yes'
+- id: 'Websockets'
+  color: '#72b57f'
+  description: 'Websockets are a bi directional TCP socket connection protocol'
 

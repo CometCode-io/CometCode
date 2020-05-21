@@ -8,7 +8,6 @@ smallImage: true
 date: '2020-05-17'
 excerpt: Firebase, the BaaS platform, is as wide spreading as it is useful. But what are the different parts of the Firebase Platform, and how can you use them? 
 ---
-# What is Firebase
 Firebase is a Backend-as-a-Service - BaaS - that's currently owned and developed by Google. Firebase frees developers to focus on crafting fantastic user experiences, free from the burdens and horrors of writing, deploying, and maintaining server clusters.
 
 ![Server Rack](https://thumbs.gfycat.com/DisastrousDenseEmu.webp)
