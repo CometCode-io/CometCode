@@ -34,4 +34,10 @@
 - id: 'Websockets'
   color: '#72b57f'
   description: 'Websockets are a bi directional TCP socket connection protocol'
+- id: 'Project Management'
+  color: '#ffc012'
+  description: 'Websockets are a bi directional TCP socket connection protocol'
+- id: 'Productivity'
+  color: '#db357a'
+  description: 'Websockets are a bi directional TCP socket connection protocol'
 
