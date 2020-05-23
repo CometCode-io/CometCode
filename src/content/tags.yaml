@@ -40,4 +40,12 @@
 - id: 'Productivity'
   color: '#db357a'
   description: 'Websockets are a bi directional TCP socket connection protocol'
-
+- id: 'React Native'
+  color: '#e67e22'
+  description: 'React Native is the mobile app development framework based off of ReactJS'
+- id: 'Ionic'
+  color: '#2c3e50'
+  description: 'Ionic Framework is an open source UI toolkit for building performant, high-quality mobile and desktop apps using web technologies — HTML, CSS, and JavaScript — with integrations for popular frameworks like Angular and React.'
+- id: 'Nativescript'
+  color: '#2980b9'
+  description: 'NativeScript is how you write truly native cross-platform mobile applications with JavaScript, TypeScript or Angular. You can always directly access all native platform APIs on both iOS and Android from JavaScript, TypeScript or Angular.'
