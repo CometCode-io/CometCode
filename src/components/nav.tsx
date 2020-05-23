@@ -26,7 +26,7 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
 
   state = {
     collapsed: true,
-    collapsedWidth: 80,
+    collapsedWidth: 0,
     leftPadding: 0,
   };
 
@@ -34,17 +34,17 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
     super(props);
 
     if (typeof window !== 'undefined') {
-      if (window.innerWidth <= 700) {
-        this.state = {
-          collapsed: true,
-          collapsedWidth: 0,
-          leftPadding: 0,
-        };
-      } else {
+      if (window.innerWidth >= 700) {
         this.state = {
           collapsed: true,
           collapsedWidth: 80,
           leftPadding: 80,
+        };
+      } else {
+        this.state = {
+          collapsed: true,
+          collapsedWidth: 0,
+          leftPadding: 0,
         };
       }
     }
