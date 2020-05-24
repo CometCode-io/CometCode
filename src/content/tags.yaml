@@ -49,3 +49,6 @@
 - id: 'Nativescript'
   color: '#2980b9'
   description: 'NativeScript is how you write truly native cross-platform mobile applications with JavaScript, TypeScript or Angular. You can always directly access all native platform APIs on both iOS and Android from JavaScript, TypeScript or Angular.'
+- id: 'Open Source'
+  color: '#5286d9'
+  description: 'Open source projects are owned, developed, and maintained by the community, and are 100% free to use. All of the code is accessible for the community to contribute to and build off of'

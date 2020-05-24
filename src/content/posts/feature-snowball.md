@@ -3,6 +3,7 @@ layout: post
 title: 'The Feature Snowball Method Might be Good For You'
 author: [Caelin]
 tags: ['Project Management', 'Productivity']
+image: ../img/feature-snowball.png
 date: '2020-05-23'
 excerpt: The Feature Snowball is a productivity method that focuses on building up momentum and confidence by completing the easiest tasks first. 
 ---

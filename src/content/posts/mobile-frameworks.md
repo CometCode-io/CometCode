@@ -4,6 +4,7 @@ title: 'React Native vs Flutter vs Ionic vs NativeScript'
 author: [Caelin]
 tags: ['Flutter', 'React Native', 'Ionic', 'Nativescript']
 date: '2020-05-23'
+image: ../img/mobile-dev-frameworks.png
 excerpt: The four most popular cross platform app development platforms compared.
 ---
 
