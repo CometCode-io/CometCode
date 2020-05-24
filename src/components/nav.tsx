@@ -58,6 +58,21 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
       );
     }
     this.resize();
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth >= 700) {
+        this.setState({
+          collapsed: true,
+          collapsedWidth: 80,
+          leftPadding: 80,
+        });
+      } else {
+        this.setState({
+          collapsed: true,
+          collapsedWidth: 0,
+          leftPadding: 0,
+        });
+      }
+    }
   }
 
   componentWillUnmount() {
@@ -71,12 +86,6 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
       collapsedWidth: window.innerWidth <= 700 ? 0 : 80,
       leftPadding: window.innerWidth <= 700 ? 0 : 80,
     });
-  }
-
-  isMobile() {
-    if (typeof window !== 'undefined') {
-      return window.innerWidth <= 700;
-    }
   }
 
   toggle = () => {
