@@ -4,6 +4,7 @@ title: 'Why Contribute to Open Source'
 author: [Caelin]
 tags: ['Open Source']
 date: '2020-05-24'
+smallImage: true
 image: ../img/open-source.png
 excerpt: Contributing to Open Source projects can be valuable in a variety of different ways. 
 ---
