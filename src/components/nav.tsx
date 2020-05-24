@@ -24,68 +24,12 @@ interface NavProps {
 class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
   resizeListener: any;
 
-  state = {
-    collapsed: true,
-    collapsedWidth: 0,
-    leftPadding: 0,
-  };
-
   constructor(props: any) {
     super(props);
 
-    if (typeof window !== 'undefined') {
-      if (window.innerWidth >= 700) {
-        this.state = {
-          collapsed: true,
-          collapsedWidth: 80,
-          leftPadding: 80,
-        };
-      } else {
-        this.state = {
-          collapsed: true,
-          collapsedWidth: 0,
-          leftPadding: 0,
-        };
-      }
-    }
-  }
-
-  componentDidMount() {
-    if (typeof window !== 'undefined') {
-      this.resizeListener = window.addEventListener(
-        'resize',
-        this.resize.bind(this)
-      );
-    }
-    this.resize();
-    if (typeof window !== 'undefined') {
-      if (window.innerWidth >= 700) {
-        this.setState({
-          collapsed: true,
-          collapsedWidth: 80,
-          leftPadding: 80,
-        });
-      } else {
-        this.setState({
-          collapsed: true,
-          collapsedWidth: 0,
-          leftPadding: 0,
-        });
-      }
-    }
-  }
-
-  componentWillUnmount() {
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('resize', this.resizeListener);
-    }
-  }
-
-  resize() {
-    this.setState({
-      collapsedWidth: window.innerWidth <= 700 ? 0 : 80,
-      leftPadding: window.innerWidth <= 700 ? 0 : 80,
-    });
+    this.state = {
+      collapsed: true,
+    };
   }
 
   toggle = () => {
@@ -119,8 +63,8 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
         <Sider
           collapsible
           trigger={null}
-          collapsed={this.state.collapsed}
-          collapsedWidth={this.state.collapsedWidth}
+          collapsed={this.state.collapsed as boolean}
+          collapsedWidth={0}
           style={this.siderStyle()}
         >
           <div className="logo" />
@@ -198,7 +142,7 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
               <SiteTitle>Comet Code</SiteTitle>
             </HeaderLogoContainer>
           </Header>
-          <div style={{ paddingLeft: this.state.leftPadding }}>
+          <div>
             {this.props.children}
             <Footer style={{ textAlign: 'center' }}>
               Caelin Sutch ©{new Date().getFullYear()}
