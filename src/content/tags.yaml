@@ -52,3 +52,6 @@
 - id: 'Open Source'
   color: '#5286d9'
   description: 'Open source projects are owned, developed, and maintained by the community, and are 100% free to use. All of the code is accessible for the community to contribute to and build off of'
+- id: 'Web Development'
+  color: '#ed3e92'
+  description: 'Posts relating to web development technologies'
