@@ -55,3 +55,6 @@
 - id: 'Web Development'
   color: '#ed3e92'
   description: 'Posts relating to web development technologies'
+- id: 'Typescript'
+  color: '#34eb58'
+  description: 'Typescript is a popular subset of Javascript built to improve developer productivity'
