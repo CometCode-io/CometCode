@@ -61,3 +61,15 @@
 - id: 'ROS'
   color: '#34eb58'
   description: 'ROS, or the Robot Operating System, is a framework to expedite the development of robots.'
+- id: 'GraphQL'
+  color: '#ff9436'
+  description: "GraphQL is a query language for API's that uses a declarative syntax to request data."
+- id: 'Server Technology'
+  color: '#dde330'
+  description: 'The big boys that keep the world running.'
+- id: 'Prisma'
+  color: '#a400db'
+  description: "Prisma makes database access easy with an auto-generated and type-safe query builder that's tailored to your database schema. It provides an alternative to traditional ORMs and SQL query builders."
+- id: 'NodeJS'
+  color: '#198538'
+  description: "Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine."
