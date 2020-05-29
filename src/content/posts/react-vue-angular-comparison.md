@@ -17,23 +17,23 @@ It is also identified as React.js or ReactJS. Developed and maintained by Facebo
 
 *React Architecture*
 
-![Architecture](https://imgur.com/DfpbWV2)
+![Architecture](https://imgur.com/DfpbWV2.jpg)
 
 # Vue
 
 Vue which is commonly known as Vue.js was created by Evan You in 2014. Evan is responsible for maintaining the Vue.js and the rest of his team come from different companies like Netguru and Netlify. Vue has since turned into a favored front-end tool for numerous developers owing to the JS base plus HTML extension. This framework utilizes "high decoupling", permitting developers to successfully create user interfaces (UIs). The code below shows some examples of Vue components. These components represent a button and the number of times the button is printed whenever the button is clicked.
 
-![Vue example](https://imgur.com/hnmncex)
+![Vue example](https://imgur.com/hnmncex.jpg)
 
 # Angular
 
 It is a framework and platform mainly used for creating most single-page applications with the use of typescript and HTML. Its architecture is totally dependent on certain fundamental concepts, which include NgModules. Its NgModules are different from JavaScript (ES2015) modules and also complement JavaScript. The figure below shows basic building blocks of an angular application. Angular utilizes Typescript, and is a heavily opionated framework. Its CLI tools encourage a specific methodology and structure of software development. 
 
- ![Angular Structure](https://imgur.com/WbpUiCO)
+ ![Angular Structure](https://imgur.com/WbpUiCO.jpg)
 
 Each Angular application in any event has one part, the root segment that associates a segment chain of command with the page document object model (DOM). Every segment characterizes a class that contains application information and rationale, and is related with a HTML format that characterizes a view to be shown in an objective situation.
 
-![Angular Flow](https://imgur.com/mmzQeyp)
+![Angular Flow](https://imgur.com/mmzQeyp.jpg)
 
 # Conclusion
 
