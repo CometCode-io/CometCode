@@ -41,7 +41,7 @@ The JavaScript `...` operator can be used for a variety of routine tasks in Java
 - Concatenating or combining arrays
 - Using Math functions
 - Using arrays as arguments
-- Adding item sto a list
+- Adding items to a list
 - Adding or taking from  state in React
 - Combining objects
 - Converting NodeList to an array
