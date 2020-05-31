@@ -48,7 +48,6 @@ const DatePublished = styled.h4`
 const Toc = css`
   right: 1rem;
   max-height: 300px;
-  width: 310px;
   display: flex;
   margin-left: auto;
   overflow: auto;
