@@ -16,6 +16,7 @@ import Card from 'antd/lib/card';
 import { Col, Row } from 'antd/lib/grid';
 import Timeline from 'antd/lib/timeline';
 import Paragraph from 'antd/lib/typography/Paragraph';
+import { Code } from '../components/code';
 
 const { Content } = Layout;
 
