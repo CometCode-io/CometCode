@@ -69,6 +69,21 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-firebase',
+      options: {
+        credentials: {
+          apiKey: 'AIzaSyCeumsCpny5f4LHL9FE2uUck1Al7q7IyMM',
+          authDomain: 'comet-code.firebaseapp.com',
+          databaseURL: 'https://comet-code.firebaseio.com',
+          projectId: 'comet-code',
+          storageBucket: 'comet-code.appspot.com',
+          messagingSenderId: '769007083389',
+          appId: '1:769007083389:web:f7fd1371ed30ec38fd7614',
+          measurementId: 'G-0SY1HRBC9S',
+        },
+      },
+    },
+    {
       resolve: `gatsby-plugin-algolia`,
       options: {
         appId: process.env.GATSBY_ALGOLIA_APP_ID,
