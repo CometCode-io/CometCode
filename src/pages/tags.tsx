@@ -7,6 +7,7 @@ import { GatsbyGenericNode, Image, TagData } from '../interfaces';
 import BigTag from '../components/big-tag';
 import { Helmet } from 'react-helmet';
 import config from '../website-config';
+import firebase from 'gatsby-plugin-firebase';
 
 const { Content } = Layout;
 
@@ -79,6 +80,9 @@ const TagsPage: React.FC<TagsPageProps> = (props) => {
     'See all the different tags/topics that are discussed on this site';
   const pageUrl = `${config.siteUrl}/tags`;
   const pageTitle = 'Tags - ' + config.title;
+  React.useEffect(() => {
+    firebase.analytics().logEvent('visited_tags');
+  }, []);
   return (
     <div>
       <Helmet>

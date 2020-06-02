@@ -16,7 +16,7 @@ import Card from 'antd/lib/card';
 import { Col, Row } from 'antd/lib/grid';
 import Timeline from 'antd/lib/timeline';
 import Paragraph from 'antd/lib/typography/Paragraph';
-import { Code } from '../components/code';
+import firebase from 'gatsby-plugin-firebase';
 
 const { Content } = Layout;
 
@@ -47,7 +47,6 @@ const DatePublished = styled.h4`
 `;
 
 const Toc = css`
-  right: 1rem;
   max-height: 300px;
   display: flex;
   margin-left: auto;
@@ -74,6 +73,10 @@ const mdxStyles = css`
 
 const PostPageTemplate: React.FC<PostPageProps> = (props) => {
   const { body, frontmatter, tableOfContents } = props.data.mdx;
+  const snakeTitle = frontmatter.title.toLowerCase().split(' ').join('_');
+  React.useEffect(() => {
+    firebase.analytics().logEvent('visited_' + snakeTitle);
+  }, []);
   const pageDescription = frontmatter.excerpt;
   const pageUrl = `${config.siteUrl}/${props.path}`;
   const pageTitle = frontmatter.title + ' - ' + config.title;

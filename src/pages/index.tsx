@@ -10,6 +10,7 @@ import TagsContainer from '../components/tags-container';
 import config from '../website-config';
 import { Helmet } from 'react-helmet';
 import Masonry from 'react-masonry-css';
+import firebase from 'gatsby-plugin-firebase';
 
 const { Content } = Layout;
 
@@ -97,6 +98,9 @@ export default class IndexPage extends React.Component<
     const allTags: TagData[] = this.props.data.tagInformation.edges.map(
       (tag: GatsbyGenericNode<TagData>) => tag.node
     );
+    React.useEffect(() => {
+      firebase.analytics().logEvent('visited_index');
+    }, []);
     return (
       <div>
         <Helmet>
