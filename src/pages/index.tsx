@@ -98,9 +98,7 @@ export default class IndexPage extends React.Component<
     const allTags: TagData[] = this.props.data.tagInformation.edges.map(
       (tag: GatsbyGenericNode<TagData>) => tag.node
     );
-    React.useEffect(() => {
-      firebase.analytics().logEvent('visited_index');
-    }, []);
+    firebase.analytics().logEvent('visited_index');
     return (
       <div>
         <Helmet>
