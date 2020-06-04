@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { Layout, Menu } from 'antd';
 import {
+  GithubOutlined,
   HomeOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -14,12 +15,37 @@ import { Helmet } from 'react-helmet';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import AniLink from 'gatsby-plugin-transition-link/AniLink';
+import { css } from '@emotion/core';
 
 const { Header, Footer, Sider } = Layout;
 
 interface NavProps {
   activeLink: string;
 }
+
+const HeaderLink = css`
+  display: none;
+  margin-top: 0.5rem;
+  margin-left: 2rem;
+  color: white;
+  font-size: 1rem;
+  @media (min-width: 1140px) {
+    display: block;
+  }
+`;
+
+const RightSection = styled.div`
+  display: none;
+  margin-top: 0.5rem;
+  margin-right: 2rem;
+  position: absolute;
+  right: 0;
+  color: white;
+  font-size: 2.5rem;
+  @media (min-width: 1140px) {
+    display: block;
+  }
+`;
 
 class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
   resizeListener: any;
@@ -141,6 +167,52 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
               <HeaderLogo src="/logo.svg" />
               <SiteTitle>Comet Code</SiteTitle>
             </HeaderLogoContainer>
+            <AniLink
+              cover
+              to="/"
+              direction="right"
+              bg="#141f35"
+              css={HeaderLink}
+            >
+              Home
+            </AniLink>
+            <AniLink
+              cover
+              to="/search"
+              direction="right"
+              bg="#141f35"
+              css={HeaderLink}
+            >
+              Search
+            </AniLink>
+            <AniLink
+              cover
+              to="/tags"
+              direction="right"
+              bg="#141f35"
+              css={HeaderLink}
+            >
+              Tags
+            </AniLink>
+            <AniLink
+              cover
+              to="/snippets"
+              direction="right"
+              bg="#141f35"
+              css={HeaderLink}
+            >
+              Snippets
+            </AniLink>
+            <RightSection
+              style={{ position: 'absolute', right: 0, color: 'white' }}
+            >
+              <a
+                href="https://github.com/CometCode-io"
+                style={{ color: 'white' }}
+              >
+                <GithubOutlined />
+              </a>
+            </RightSection>
           </Header>
           <div>
             {this.props.children}
