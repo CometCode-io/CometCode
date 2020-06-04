@@ -15,10 +15,15 @@ import { Helmet } from 'react-helmet';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import AniLink from 'gatsby-plugin-transition-link/AniLink';
+import { Link } from 'gatsby';
 import { css } from '@emotion/core';
 
 const { Header, Footer, Sider } = Layout;
 
+const HeaderLogoContainer = css`
+  display: flex;
+  flex-direction: row;
+`;
 interface NavProps {
   activeLink: string;
 }
@@ -163,10 +168,10 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
                 onClick: this.toggle,
               }
             )}
-            <HeaderLogoContainer>
+            <Link to="/" css={HeaderLogoContainer}>
               <HeaderLogo src="/logo.svg" />
               <SiteTitle>Comet Code</SiteTitle>
-            </HeaderLogoContainer>
+            </Link>
             <AniLink
               cover
               to="/"
@@ -225,11 +230,6 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
     );
   }
 }
-
-const HeaderLogoContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
 
 const HeaderLogo = styled.img`
   width: 60px;

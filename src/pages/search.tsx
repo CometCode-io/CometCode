@@ -17,6 +17,7 @@ import { Helmet } from 'react-helmet';
 import config from '../website-config';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
+import firebase from 'gatsby-plugin-firebase';
 
 const { Content } = Layout;
 
@@ -65,6 +66,9 @@ const Hits = connectHits(({ hits }) => (
 ));
 
 const SearchPage: React.FC<any> = () => {
+  React.useEffect(() => {
+    firebase.analytics().logEvent('visited_search');
+  }, []);
   return (
     <>
       <Helmet>

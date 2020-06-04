@@ -73,3 +73,6 @@
 - id: 'NodeJS'
   color: '#198538'
   description: "Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine."
+- id: 'JavaScript'
+  color: '#fcea1e'
+  description: 'JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions. While it is most well-known as the scripting language for Web pages, many non-browser environments also use it, such as Node.js, Apache CouchDB and Adobe Acrobat'

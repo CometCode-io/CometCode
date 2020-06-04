@@ -10,6 +10,7 @@ import TagsContainer from '../components/tags-container';
 import config from '../website-config';
 import { Helmet } from 'react-helmet';
 import Masonry from 'react-masonry-css';
+import firebase from 'gatsby-plugin-firebase';
 
 const { Content } = Layout;
 

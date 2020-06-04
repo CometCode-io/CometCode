@@ -7,13 +7,15 @@ const InlineCode = styled.code`
   background-color: rgb(1, 22, 39);
   color: rgb(214, 222, 235);
   padding: 0.2rem 0.3rem;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Berlin Rounded', sans-serif;
   border-radius: 4px;
+  font-size: 14px !important;
   font-weight: bold;
 `;
 
 const StyledImage = styled.img`
   max-width: 100%;
+  display: block;
 `;
 
 const StyledText = styled.text`

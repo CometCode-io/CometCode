@@ -9,6 +9,7 @@ import { Helmet } from 'react-helmet';
 import config from '../website-config';
 import PostCard from '../components/post-card';
 import Masonry from 'react-masonry-css';
+import firebase from 'gatsby-plugin-firebase';
 const { Content } = Layout;
 
 interface SnippetsPageProps {
@@ -32,6 +33,9 @@ const SnippetsPage: React.FC<SnippetsPageProps> = (props) => {
     'Various code snippets. Bite size code to solve big problems';
   const pageUrl = `${config.siteUrl}/snippets`;
   const pageTitle = 'Snippets - ' + config.title;
+  React.useEffect(() => {
+    firebase.analytics().logEvent('visited_snippets');
+  }, []);
   return (
     <div>
       <Helmet>
