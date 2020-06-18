@@ -1,7 +1,9 @@
 ---
 layout: post
-title: 'You can do a lot more with the JavaScript console than console.log()'
+title: 'You Can Do a Lot More with the JavaScript Console than console.log()'
 author: [Caelin]
+image: ../img/javascript-console.png
+smallImage: true
 tags: ['JavaScript']
 date: '2020-05-31'
 excerpt: Examining some of the other uses of the console object to enhance your JavaScript application debugging experience.

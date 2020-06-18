@@ -3,6 +3,8 @@ layout: post
 title: 'JSON in JavaScript'
 author: [Caelin]
 tags: ['JavaScript']
+image: ../img/json-in-js.png
+smallImage: true
 date: '2020-06-1'
 excerpt: JSON is one of the most universally used data transfer formats. Lets look at how JSON can be used in JavaScript.
 ---

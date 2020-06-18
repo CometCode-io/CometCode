@@ -3,6 +3,8 @@ layout: post
 title: 'Comparison between React, Vue and Angular'
 author: [Caelin]
 tags: ['Web Development']
+image: ../img/react-vue-angular.png
+smallImage: true
 date: '2020-05-26'
 excerpt: React, Vue, and Angular are the three most popular frontend frameworks today. How do these frameworks differ? Learn more by reading this article. 
 ---

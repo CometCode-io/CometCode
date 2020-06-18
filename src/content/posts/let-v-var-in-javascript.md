@@ -3,6 +3,8 @@ layout: post
 title: 'Let vs. Var in JavaScript'
 author: [Caelin]
 tags: ['JavaScript']
+image: ../img/let-v-var.png
+smallImage: true
 date: '2020-06-1'
 excerpt: Let and Var can seem interchangeable in JavaScript, but there are some differences in the two that can impact how you use them.
 ---

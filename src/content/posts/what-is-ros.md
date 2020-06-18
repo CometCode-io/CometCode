@@ -3,6 +3,8 @@ layout: post
 title: 'What is ROS?'
 author: [Caelin]
 tags: ['ROS']
+image: ../img/what-is-ros.png
+smallImage: true
 date: '2020-05-26'
 excerpt: ROS, or the Robot Operating System, is a popular framework for developing reusable code for robot platforms
 ---

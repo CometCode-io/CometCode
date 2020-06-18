@@ -3,6 +3,8 @@ layout: post
 title: 'The Non-Technical Skills Software Developers Need'
 author: [Caelin]
 tags: ['Productivity', 'Project Management', 'Theory']
+image: ../img/non-technical-skills.png
+smallImage: true
 date: '2020-05-27'
 excerpt: Software development isn't all about knowing the fanciest tricks or writing the least code to solve a problem. Here are some non-technical skills a software developer should have to succeed. 
 ---
