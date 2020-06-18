@@ -245,6 +245,16 @@ export const query = graphql`
           timeToRead
           excerpt
           frontmatter {
+            image {
+              childImageSharp {
+                fluid(maxWidth: 3720) {
+                  ...GatsbyImageSharpFluid
+                }
+                fixed {
+                  ...GatsbyImageSharpFixed
+                }
+              }
+            }
             title
             date
             excerpt
