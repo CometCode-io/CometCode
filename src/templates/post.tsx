@@ -101,7 +101,7 @@ const PostPageTemplate: React.FC<PostPageProps> = (props) => {
           <meta property="article:publisher" content={config.facebook} />
         )}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Snippets" />
+        <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:url" content={pageUrl} />
         {frontmatter.image ? (
@@ -245,6 +245,16 @@ export const query = graphql`
           timeToRead
           excerpt
           frontmatter {
+            image {
+              childImageSharp {
+                fluid(maxWidth: 3720) {
+                  ...GatsbyImageSharpFluid
+                }
+                fixed {
+                  ...GatsbyImageSharpFixed
+                }
+              }
+            }
             title
             date
             excerpt

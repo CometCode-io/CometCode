@@ -219,7 +219,7 @@ class NavComponent extends React.Component<NavProps, Record<string, unknown>> {
               </a>
             </RightSection>
           </Header>
-          <div>
+          <div style={{ backgroundColor: 'white' }}>
             {this.props.children}
             <Footer style={{ textAlign: 'center' }}>
               Caelin Sutch ©{new Date().getFullYear()}

@@ -16,7 +16,6 @@ export const Pre = styled.pre`
     line-height: 1.3rem;
     height: 1.3rem;
   }
-  font-family: 'Courier New', Courier, monospace;
   position: relative;
 `;
 
@@ -38,7 +37,6 @@ const CopyCode = styled.button`
   &:hover {
     opacity: 1;
   }
-  font-family: 'Berlin Rounded', sans-serif;
   font-weight: bold;
 `;
 

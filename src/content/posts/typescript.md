@@ -3,6 +3,8 @@ layout: post
 title: 'What is Typescript?'
 author: [Caelin]
 tags: ['Web Development', 'Typescript']
+image: ../img/what-is-typescript.png
+smallImage: true
 date: '2020-05-26'
 excerpt: Typescript is a popular technology you've probably seen all around the internet. But what exactly is it, and why is it so popular?
 ---

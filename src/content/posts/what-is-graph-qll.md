@@ -3,6 +3,8 @@ layout: post
 title: 'What is GraphQL?'
 author: [Caelin]
 tags: ['GraphQL', 'Server Technology']
+image: ../img/what-is-graphql.png
+smallImage: true
 date: '2020-05-28'
 excerpt: GraphQL is one of the most modern ways to build and query API's using a declarative syntax, versus using endpoints like REST. 
 ---

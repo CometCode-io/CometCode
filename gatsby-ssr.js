@@ -7,7 +7,6 @@ const InlineCode = styled.code`
   background-color: rgb(1, 22, 39);
   color: rgb(214, 222, 235);
   padding: 0.2rem 0.3rem;
-  font-family: 'Courier New', Courier, monospace;
   border-radius: 4px;
   font-weight: bold;
 `;

@@ -5,7 +5,7 @@ require('dotenv').config();
 
 module.exports = {
   siteMetadata: {
-    name: 'Comet  Code',
+    name: 'Comet Code',
     tagline: 'Tutorials and Projects for the Modern Developer💪',
   },
   mapping: {
