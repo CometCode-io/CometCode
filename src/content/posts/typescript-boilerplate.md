@@ -157,7 +157,5 @@ Liked this article? I'd love to see you on Twitter, Github, or Linkedin!
 
 [![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/in/caelinsutch)
 
-<!-- Place this tag where you want the button to render. -->
 <a class="github-button" href="https://github.com/caelinsutch" data-size="large" aria-label="Follow @caelinsutch on GitHub">Follow @caelinsutch</a>
-<!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
