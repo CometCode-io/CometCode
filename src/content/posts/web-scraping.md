@@ -24,7 +24,7 @@ We'll be writing this in Typescript because the typed nature of TypeScript makes
 To complete this tutorial, you need to have Node.js (version 8.x or later) and npm installed on your computer.
 
 # Getting Started
-Lets create a new `scraper` directory for this project and initialize it as an NPM package by running `npm init -y` in the project root.
+Let's create a new `scraper` directory for this project and initialize it as an NPM package by running `npm init -y` in the project root.
 
 ## Setting up TypeScript
 Lets setup TypeScript:
@@ -32,7 +32,7 @@ Lets setup TypeScript:
 ```bash
 npm i -D typescript # Typescript compiles to plain JS
 npm i -D ts-node # ts-node to run typescript code without compiling to JS
-npm i -D nodemon # Automatically restarts the papplication whenever file changes are detected
+npm i -D nodemon # Automatically restarts the application whenever file changes are detected
 ```
 
 ### Setting up TSConfig
@@ -80,15 +80,14 @@ The start script compiles and runs our code, while the dev script will run the c
 
 ### Installing other dependencies
 
-Lets install the dependneices we'll be using to build the web scraper:
+Let's install the dependencies we'll be using to build the web scraper:
 ```bash
 npm i -s axio cheerio
 npm i -D @types/axios @types/cheerio
 ```
 
 ## Setup the folder structure
-Create a new folder `src` in your root directory and a file called `index.ts` in the `src` folder. Your folder structure should now look like this:
-Create the following folder structure:
+Create a new folder `src` in your root directory, and a file called `index.ts` in the `src` folder. Your folder structure should now look like this:
 
 ```text
 scraper
