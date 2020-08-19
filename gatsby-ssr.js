@@ -20,7 +20,7 @@ const StyledText = styled.text`
 `;
 
 const StyledP = styled.p`
-  font-size: 18px;
+  font-weight: 400;
 `;
 
 const components = {
